@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Constants;
 import utilities.Log;
 
@@ -69,5 +71,10 @@ public class BrowserHelper {
     public static void scrollToView(WebElement element) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].scrollIntoView();", element);
+    }
+
+    public static void waitForElement(int seconds, WebElement element) {
+        WebDriverWait wait = new WebDriverWait(BrowserHelper.getWebDriver(), seconds);
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 }

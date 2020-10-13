@@ -12,4 +12,10 @@
 
         </classes>
     </test>
+    <test name="EdgeTest">
+        <parameter name="browser" value="MICROSOFT_EDGE" />
+        <classes>
+
+        </classes>
+    </test>
 </suite>
