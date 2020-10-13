@@ -1,6 +1,6 @@
 package testcases;
 
-import helpers.LoginPage;
+import pageobjects.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -25,25 +25,25 @@ public class ArticleTest extends BaseTest{
         Log.info("[STEP-1] - Log in with account registered before");
         loginPage.login(Constants.VALID_USERNAME,Constants.VALID_PASSWORD );
 
-        Log.info("[STEP-1] - Click content on menu nav bar)");
+        Log.info("[STEP-2] - Click content on menu nav bar)");
         articlePage.clickMenuItem(Constants.CONTENT_MENU);
 
-        Log.info("[STEP-1] - Click Articles item of content menu");
+        Log.info("[STEP-3] - Click Articles item of content menu");
         articlePage.clickMenuItem(Constants.ARTICLES_MENU);
 
-        Log.info("[STEP-2] - Click new Article button");
-        articlePage.clickNewArticleBtn();
+        Log.info("[STEP-4] - Click new Article button");
+        articlePage.clickNewBtn();
 
-        Log.info("[STEP-3] - Fill data to article form");
-        articlePage.fillDataArticleForm(Constants.TITLE_ARTICLE,Constants.STATUS_ARTICLE,Constants.CATEGORY_ARTICLE,Constants.CONTENT_AREA);
+        Log.info("[STEP-5] - Fill data to article form");
+        articlePage.fillDataArticleForm(Constants.TITLE_ARTICLE,Constants.STATUS,Constants.CATEGORY_ARTICLE,Constants.CONTENT_AREA);
 
-        Log.info("[STEP-4] - Click save button");
+        Log.info("[STEP-6] - Click save button");
         articlePage.clickSaveAndCloseBtn();
 
-        Log.info("[STEP-5] - Assert saved article success");
+        Log.info("[STEP-7] - Assert saved article success");
         Assert.assertEquals(articlePage.getSavedMessageSuccess(),Constants.SAVED_SUCCESS_MESS);
 
-        Log.info("[STEP-6] - Check the Articles just posted displays");
+        Log.info("[STEP-8] - Check the Articles just posted displays");
         Assert.assertEquals(articlePage.getFirstTitle(),Constants.TITLE_ARTICLE);
     }
 
@@ -61,10 +61,10 @@ public class ArticleTest extends BaseTest{
         articlePage.clickMenuItem(Constants.ARTICLES_MENU);
 
         Log.info("[STEP-2] - Click new Article button");
-        articlePage.clickNewArticleBtn();
+        articlePage.clickNewBtn();
 
         Log.info("[STEP-3] - Fill data to article form");
-        articlePage.fillDataArticleForm(Constants.TITLE_ARTICLE,Constants.STATUS_ARTICLE,Constants.CATEGORY_ARTICLE,Constants.CONTENT_AREA);
+        articlePage.fillDataArticleForm(Constants.TITLE_ARTICLE,Constants.STATUS,Constants.CATEGORY_ARTICLE,Constants.CONTENT_AREA);
 
         Log.info("[STEP-4] - Insert image");
         articlePage.insertImage();

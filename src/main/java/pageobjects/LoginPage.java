@@ -1,8 +1,10 @@
-package helpers;
+package pageobjects;
 
+import helpers.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import pageobjects.BasePage;
+
+import static helpers.BrowserHelper.getWebDriver;
 
 public class LoginPage extends BasePage {
     // Locator
@@ -11,11 +13,11 @@ public class LoginPage extends BasePage {
     private By _loginBtn = By.cssSelector("button.login-button");
 
     // Element
-    private WebElement inputUserName(){ return BrowserHelper.getWebDriver().findElement(_inputUserName); }
+    private WebElement inputUserName(){ return getWebDriver().findElement(_inputUserName); }
 
-    private WebElement inputPassword(){ return BrowserHelper.getWebDriver().findElement(_inputPassword); }
+    private WebElement inputPassword(){ return getWebDriver().findElement(_inputPassword); }
 
-    private WebElement loginBtn(){ return BrowserHelper.getWebDriver().findElement(_loginBtn); }
+    private WebElement loginBtn(){ return getWebDriver().findElement(_loginBtn); }
 
     public void clickLoginBtn(){ loginBtn().click(); }
 

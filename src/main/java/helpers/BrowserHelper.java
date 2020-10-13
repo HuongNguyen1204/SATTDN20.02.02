@@ -77,4 +77,11 @@ public class BrowserHelper {
         WebDriverWait wait = new WebDriverWait(BrowserHelper.getWebDriver(), seconds);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
+
+    public static void switchToDefaultContent(){
+         driver.switchTo().defaultContent();
+    }
+    public static void switchToIframe(WebElement element){
+        driver.switchTo().frame(element);
+    }
 }

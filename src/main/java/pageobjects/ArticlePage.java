@@ -3,31 +3,27 @@ package pageobjects;
 import helpers.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import utilities.Constants;
 import utilities.Log;
+
+import static helpers.BrowserHelper.getWebDriver;
 
 public class ArticlePage extends BasePage {
 
     // Locator
-    private By _newArticleBtn = By.cssSelector("#toolbar button.button-new");
     private By _titleInput = By.id("jform_title");
     private By _articleTextArea = By.id("jform_articletext_ifr");
     private By _saveAndCloseBtn = By.cssSelector("#toolbar button.button-save");
-    private By _savedSuccessMessage = By.cssSelector("div.alert-success div.alert-message");
     private By _imageTab = By.xpath("//div [@class='js-editor-tinymce'] //button[.='Image']");
     private By _statusSelect = By.id("jform_state_chzn");
     private By _categorySelect = By.id("jform_catid_chzn");
     private By _firstTile = By.cssSelector("tbody tr:first-child a[data-original-title=Edit]");
     private By _imageItem = By.xpath("//div[normalize-space(.)='powered_by...']//preceding-sibling::div");
     private By _insertBtn = By.cssSelector("button.button-save-selected");
-    private By _imageModal = By.cssSelector("div.mce-container.mce-panel.mce-floatpanel.mce-window.mce-in");
+    private By _parentImageIframe  = By.cssSelector("div.mce-container-body.mce-window-body iframe");
     private By _imageIframe = By.id("imageframe");
     private String _nameOption = "//div[@class='controls']//a[.='%s']";
 
     // Element
-    private WebElement newArticleBtn() {
-        return BrowserHelper.getWebDriver().findElement(_newArticleBtn);
-    }
 
     private WebElement titleInput() {
         return BrowserHelper.getWebDriver().findElement(_titleInput);
@@ -51,27 +47,19 @@ public class ArticlePage extends BasePage {
         return BrowserHelper.getWebDriver().findElement(_saveAndCloseBtn);
     }
 
-    private WebElement savedSuccessMessage() {
-        return BrowserHelper.getWebDriver().findElement(_savedSuccessMessage);
-    }
-
     private WebElement imageTab() {
-        return BrowserHelper.getWebDriver().findElement(_imageTab);
+        return getWebDriver().findElement(_imageTab);
     }
 
-    private WebElement imageItem() { return BrowserHelper.getWebDriver().findElement(_imageItem); }
+    private WebElement imageItem() { return getWebDriver().findElement(_imageItem); }
 
-    private WebElement insertButton() { return BrowserHelper.getWebDriver().findElement(_insertBtn); }
+    private WebElement insertButton() { return getWebDriver().findElement(_insertBtn); }
 
-    private WebElement imageModal() { return BrowserHelper.getWebDriver().findElement(_imageModal); }
+    private WebElement imageIframe() { return getWebDriver().findElement(_imageIframe); }
 
-    private WebElement imageIframe() { return BrowserHelper.getWebDriver().findElement(_imageIframe); }
+    private WebElement parentImageIframe() { return getWebDriver().findElement(_parentImageIframe);}
 
     // Method
-    public void clickNewArticleBtn() {
-        newArticleBtn().click();
-    }
-
     public void clickSaveAndCloseBtn() {
         saveAndCloseBtn().click();
     }
@@ -80,7 +68,10 @@ public class ArticlePage extends BasePage {
         imageTab().click();
     }
 
-    public void clickInsertButton() { insertButton().click(); }
+    public void clickInsertButton() {
+        insertButton().click();
+    }
+
     /***
      * fill data to article form and click save
      * @param title
@@ -97,15 +88,21 @@ public class ArticlePage extends BasePage {
         articleTextArea().sendKeys(text);
     }
 
+    /***
+     * Insert image
+     */
     public void insertImage() {
         Log.info(" + Click image button");
         clickImageTab();
-        BrowserHelper.waitForElement(Constants.TIMES_WAIT_ELEMENTS,imageIframe());
-        BrowserHelper.getWebDriver().switchTo().frame(imageIframe());
+
         Log.info(" + Choose image");
-        BrowserHelper.waitForElement(Constants.TIMES_WAIT_ELEMENTS,imageItem());
+        BrowserHelper.switchToIframe(parentImageIframe());
+        BrowserHelper.switchToIframe(imageIframe());
         imageItem().click();
+
         Log.info(" + Click Insert button");
+        BrowserHelper.switchToDefaultContent();
+        BrowserHelper.switchToIframe(parentImageIframe());
         clickInsertButton();
     }
 
@@ -113,10 +110,14 @@ public class ArticlePage extends BasePage {
      * Get success message after post new article
      * @return
      */
-    public String getSavedMessageSuccess() {
-        return getText(savedSuccessMessage());
-    }
+//    public String getSavedMessageSuccess() {
+//        return getText(savedSuccessMessage());
+//    }
 
+    /***
+     * Get first title articles post
+     * @return
+     */
     public String getFirstTitle() {
         return getText(firstTile());
     }
