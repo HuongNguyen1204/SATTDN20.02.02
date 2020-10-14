@@ -20,7 +20,7 @@ public class ContactTest extends BaseTest{
     }
 
     @Test(testName = "TO_JOOMLA_CONTACTS_006",description = "Verify user can check in contact")
-    public void tc_JOOMLA_CONTACTS_006(){
+    public void TC_JOOMLA_CONTACTS_006(){
         Log.startTestCase("TO_JOOMLA_CONTACTS_006: Verify user can check in contact ");
 
         Log.info("[STEP-1] - Log in with account registered before");
@@ -53,7 +53,7 @@ public class ContactTest extends BaseTest{
     }
 
     @Test(testName = "TC_JOOMLA_CONTACTS_013",description = "Verify user can add image to contact's information")
-    public void tc_JOOMLA_CONTACTS_013(){
+    public void TC_JOOMLA_CONTACTS_013(){
         Log.startTestCase("TC_JOOMLA_CONTACTS_013: Verify user can add image to contact's information");
 
         Log.info("[STEP-1] - Log in with account registered before");

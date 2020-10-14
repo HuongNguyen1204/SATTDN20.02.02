@@ -19,7 +19,7 @@ public class ArticleTest extends BaseTest {
     }
 
     @Test(testName = "TC_JOOMLA_ARTICLE_006", description = "User can check in an article")
-    public void tc_JOOMLA_ARTICLE_006() {
+    public void TC_JOOMLA_ARTICLE_006() {
         Log.startTestCase("TC_JOOMLA_ARTICLE_006 : User can check in an articles");
 
         Log.info("[STEP-1] - Log in with account registered before");
@@ -48,7 +48,7 @@ public class ArticleTest extends BaseTest {
     }
 
     @Test(testName = "TC_JOOMLA_ARTICLE_013", description = "TC_JOOMLA_ARTICLE_013")
-    public void tc_JOOMLA_ARTICLE_013() {
+    public void TC_JOOMLA_ARTICLE_013() {
         Log.startTestCase("TC_JOOMLA_ARTICLE_006 : User can check in an articles");
 
         Log.info("[STEP-1] - Log in with account registered before");

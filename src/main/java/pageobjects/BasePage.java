@@ -19,6 +19,7 @@ public class BasePage {
     private By _trashBtn = By.cssSelector("#toolbar-trash button");
     private By _listLimit = By.id("list_limit_chzn");
     private By _allItem = By.cssSelector("#list_limit_chzn ul li:last-child");
+    private By _editBtn = By.cssSelector("#toolbar-edit button");
     private String _menuItem = "//ul[@id='menu']//li//a[normalize-space(.)='%s']";
     private String _nameOption = "//div[@class='controls']//a[.='%s']";
     private String _subMenuItem = "//ul[@id='nav-empty']//a[normalize-space(.)='%s']";
@@ -83,6 +84,8 @@ public class BasePage {
         return getWebDriver().findElement(_allItem);
     }
 
+    private WebElement editBtn() { return getWebDriver().findElement(_editBtn); }
+
     //Method
     public void clickMenuItem(String menuItemName) {
         waitForElement(Constants.TIMES_WAIT_ELEMENTS, menuItem(menuItemName));
@@ -104,6 +107,8 @@ public class BasePage {
     public void clickTrashBtn() {
         trashBtn().click();
     }
+
+    public void clickEditBtn() { editBtn().click(); }
 
     public void clickCheckboxBtnByName(String name) {
         waitForElement(Constants.TIMES_WAIT_ELEMENTS, checkboxBtn(name));
@@ -194,5 +199,14 @@ public class BasePage {
     public void showAllItem() {
         listLimitItem().click();
         allItem().click();
+    }
+
+    /***
+     * Deletem item by name title
+     * @param nameItem
+     */
+    public void editItem(String nameItem) {
+        clickCheckboxBtnByName(nameItem);
+        clickEditBtn();
     }
 }
