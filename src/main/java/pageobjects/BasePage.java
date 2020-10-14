@@ -15,7 +15,7 @@ public class BasePage {
     private By _saveAndCloseBtn = By.cssSelector("#toolbar button.button-save");
     private By _savedSuccessMessage = By.cssSelector("div.alert-success div.alert-message");
     private By _searchToolBtn = By.xpath("//button[normalize-space()='Search Tools']");
-    private By _statusSelect = By.id("filter_published_chzn");
+    private By _statusSelect = By.id("filter_state_chzn");
     private By _trashBtn = By.cssSelector("#toolbar-trash button");
     private By _listLimit = By.id("list_limit_chzn");
     private By _allItem = By.cssSelector("#list_limit_chzn ul li:last-child");
@@ -23,7 +23,7 @@ public class BasePage {
     private String _menuItem = "//ul[@id='menu']//li//a[normalize-space(.)='%s']";
     private String _nameOption = "//div[@class='controls']//a[.='%s']";
     private String _subMenuItem = "//ul[@id='nav-empty']//a[normalize-space(.)='%s']";
-    private String _typeStatus = "//div[@id='filter_published_chzn']//ul/li[.='%s']";
+    private String _typeStatus = "//div[@id='filter_state_chzn']//ul/li[.='%s']";
     private String _checkboxBtn = "//table//tbody//a[normalize-space()='%s']/../.. //preceding-sibling::td//input[@type='checkbox']";
     private String _titlePosted = "//tbody//td[@class='has-context']//a[normalize-space()='%s']";
 
@@ -89,7 +89,7 @@ public class BasePage {
     //Method
     public void clickMenuItem(String menuItemName) {
         waitForElement(Constants.TIMES_WAIT_ELEMENTS, menuItem(menuItemName));
-        menuItem(menuItemName).click();
+        scrollToClick(menuItem(menuItemName));
     }
 
     public void clickNewBtn() {
@@ -112,7 +112,8 @@ public class BasePage {
 
     public void clickCheckboxBtnByName(String name) {
         waitForElement(Constants.TIMES_WAIT_ELEMENTS, checkboxBtn(name));
-        checkboxBtn(name).click();
+        scrollToClick(checkboxBtn(name));
+//        checkboxBtn(name).click();
     }
 
     public void clickSearchToolBtn() {

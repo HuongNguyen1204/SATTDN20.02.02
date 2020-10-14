@@ -1,5 +1,6 @@
 package pageobjects;
 
+import helpers.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -14,9 +15,12 @@ public class BannerPage extends BasePage {
     private By _categoriesTitle = By.id("jform_title");
     private By _categoriesSelect = By.id("jform_catid_chzn");
     private By _clientSelect = By.id("jform_cid_chzn");
+    private By _statusSelect = By.id("jform_state_chzn");
     private By _bannerDetail = By.xpath("//ul[@id='myTabTabs']//a[.='Banner Details']");
     private String _itemTypeCategories = "//div[@id='jform_catid_chzn']//ul//li[.='%s']";
     private String _itemClient = "//div[@id='jform_cid_chzn']//ul//li[.='%s']";
+    private String _typeStatusSelect =  "//div[@id='jform_state_chzn']//ul//li[.='%s']";
+
 
     // Element
     private WebElement nameInput() {
@@ -54,6 +58,12 @@ public class BannerPage extends BasePage {
     private WebElement itemClientsName(String name) {
         return getWebDriver().findElement(By.xpath(String.format(_itemClient, name)));
     }
+
+    private WebElement statusSelect() {
+        return getWebDriver().findElement(_statusSelect);
+    }
+
+    private WebElement typeStatusSelect(String name) { return getWebDriver().findElement(By.xpath(String.format(_typeStatusSelect,name))); }
 
     // Method
 
@@ -110,5 +120,10 @@ public class BannerPage extends BasePage {
         chooseTypeCategories(typeNameCategorie);
         clickBannerDetail();
         chooseClient(nameClient);
+    }
+
+    public void chooseStatus(String nameStatus){
+        statusSelect().click();
+        typeStatusSelect(nameStatus).click();
     }
 }

@@ -4,7 +4,7 @@ public class Constants {
 
     //Common
     public static final String BASE_URL = "http://13.82.211.128:8080/administrator/";
-    public static final int TIMES_WAIT_ELEMENTS = 60;
+    public static final int TIMES_WAIT_ELEMENTS = 100;
     public static final int TIME_WAITS_DRIVER = 15;
     public static final int NUM_RANDOM_START = 1;
     public static final int DATE_FROM_CURRENT_DATE = 8;

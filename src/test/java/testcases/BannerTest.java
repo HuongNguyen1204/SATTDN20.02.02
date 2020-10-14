@@ -72,7 +72,7 @@ public class BannerTest extends BaseTest {
         bannerPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-16] - Assert saved Categories success");
-        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CATEGORIES_SUCCESS);
+        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CATEGORIES_SUCCESS,"Message saved categories does not match");
 
         Log.info("[STEP-17] - Click components menu");
         bannerPage.clickMenuItem(Constants.COMPONENTS_MENU);
@@ -96,7 +96,7 @@ public class BannerTest extends BaseTest {
         bannerPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-24] - Assert saved Banner success");
-        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_BANNER_SUCCESS);
+        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_BANNER_SUCCESS,"Message saved banner does not match");
 
         Log.info("[STEP-25] - Click to show all banner ");
         bannerPage.showAllItem();
@@ -111,7 +111,7 @@ public class BannerTest extends BaseTest {
         bannerPage.viewItemByStatus(Constants.TRASHED_STATUS);
 
         Log.info("[STEP-29] - Check item just trashed is displays");
-        Assert.assertTrue(bannerPage.doesShowTitle(nameBanner));
+        Assert.assertTrue(bannerPage.doesShowTitle(nameBanner),"item just trashed is not displays");
     }
 
 //    @Test(testName = "TC_JOOMLA_BANNERS_BANNERS_013", description = "User can create a new banner by using 'Save as Copy' button")
@@ -145,7 +145,7 @@ public class BannerTest extends BaseTest {
         bannerPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-9] - Assert saved clients success");
-        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CLIENTS_SUCCESS);
+        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CLIENTS_SUCCESS,"success message save client does not matched");
 
         Log.info("[STEP-10] - Click components menu");
         bannerPage.clickMenuItem(Constants.COMPONENTS_MENU);
@@ -167,7 +167,7 @@ public class BannerTest extends BaseTest {
         bannerPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-16] - Assert saved Categories success");
-        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CATEGORIES_SUCCESS);
+        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CATEGORIES_SUCCESS,"success message save categories does not matched");
 
         Log.info("[STEP-17] - Click components menu");
         bannerPage.clickMenuItem(Constants.COMPONENTS_MENU);
@@ -191,16 +191,16 @@ public class BannerTest extends BaseTest {
         bannerPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-24] - Assert saved Banner success");
-        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_BANNER_SUCCESS);
+        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_BANNER_SUCCESS,"success message save banner does not matched");
 
         Log.info("[STEP-25] - Click to show all banner ");
         bannerPage.showAllItem();
 
         Log.info("[STEP-26] - Check item banner just posted is displays");
-        Assert.assertTrue(bannerPage.doesShowTitle(nameBanner));
+        Assert.assertTrue(bannerPage.doesShowTitle(nameBanner),"The item banner just posted is not displays");
     }
 
-    @Test(testName = "TC_JOOMLA_BANNERS_CLIENTS_002", description = "User can edit a client")
+//    @Test(testName = "TC_JOOMLA_BANNERS_CLIENTS_002", description = "User can edit a client")
     public void TC_JOOMLA_BANNERS_CLIENTS_002() {
         Log.startTestCase("TC_JOOMLA_BANNERS_CLIENTS_002 : User can edit a client");
 
@@ -231,7 +231,10 @@ public class BannerTest extends BaseTest {
         bannerPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-9] - Assert saved clients success");
-        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CLIENTS_SUCCESS);
+        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CLIENTS_SUCCESS,"success message save client does not matched");
+
+        Log.info("[STEP-25] - Click to show all client ");
+        bannerPage.showAllItem();
 
         Log.info("[STEP-10] - Click edit the client item just posted");
         bannerPage.editItem(nameClientRandom);
@@ -248,9 +251,51 @@ public class BannerTest extends BaseTest {
         bannerPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-14] - Assert saved clients success");
-        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CLIENTS_SUCCESS);
+        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CLIENTS_SUCCESS,"success message save client does not matched");
 
         Log.info("[STEP-26] - Check item banner just posted is displays");
-        Assert.assertTrue(bannerPage.doesShowTitle(editNameClient));
+        Assert.assertTrue(bannerPage.doesShowTitle(editNameClient),"the item client just posted is not display");
+    }
+
+    @Test(testName = "TO_JOOMLA_BANNERS_CLIENTS_009", description = "User can search a client by using filter dropdown list")
+    public void TO_JOOMLA_BANNERS_CLIENTS_009(){
+        Log.startTestCase("TO_JOOMLA_BANNERS_CLIENTS_009 : User can search a client by using filter dropdown list");
+
+        Log.info("[STEP-1] - Log in with account registered before");
+        loginPage.login(Constants.VALID_USERNAME, Constants.VALID_PASSWORD);
+
+        Log.info("[STEP-2] - Click content on menu nav bar)");
+        bannerPage.clickMenuItem(Constants.COMPONENTS_MENU);
+
+        Log.info("[STEP-3] - Hover Banner item of Components menu");
+        bannerPage.hoverMenuItemDrp(Constants.BANNER_MENU);
+
+        Log.info("[STEP-4] - Click Clients item of Banner item");
+        bannerPage.clickSubMenuItem(Constants.CLIENTS_ITEMS);
+
+        Log.info("[STEP-5] - Click new button");
+        bannerPage.clickNewBtn();
+
+        Log.info("[STEP-6] - Init data for new clients");
+        String nameClientRandom = DataHelper.randomText();
+        String nameContactRandom = DataHelper.randomText();
+        String emailRandom = DataHelper.randomEmail();
+
+        Log.info("[STEP-7] - Fill this data to contact form");
+        bannerPage.fillDataToClientForm(nameClientRandom, nameContactRandom, emailRandom);
+
+        Log.info("[STEP-8] - Select unpublished status");
+        bannerPage.chooseStatus("Unpublished");
+
+        Log.info("[STEP-8] - Click save and close button");
+        bannerPage.clickSaveAndCloseBtn();
+
+        Log.info("[STEP-9] - Assert saved clients success");
+        Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CLIENTS_SUCCESS,"success message save client does not matched");
+
+        Log.info("[STEP-10] - View client by unpublished status");
+        bannerPage.viewItemByStatus("Unpublished");
+
+        Assert.assertTrue(bannerPage.doesShowTitle(nameClientRandom),"the item client just posted is not display");
     }
 }
