@@ -1,6 +1,5 @@
 package pageobjects;
 
-import helpers.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -13,20 +12,28 @@ public class LoginPage extends BasePage {
     private By _loginBtn = By.cssSelector("button.login-button");
 
     // Element
-    private WebElement inputUserName(){ return getWebDriver().findElement(_inputUserName); }
+    private WebElement inputUserName() {
+        return getWebDriver().findElement(_inputUserName);
+    }
 
-    private WebElement inputPassword(){ return getWebDriver().findElement(_inputPassword); }
+    private WebElement inputPassword() {
+        return getWebDriver().findElement(_inputPassword);
+    }
 
-    private WebElement loginBtn(){ return getWebDriver().findElement(_loginBtn); }
+    private WebElement loginBtn() {
+        return getWebDriver().findElement(_loginBtn);
+    }
 
-    public void clickLoginBtn(){ loginBtn().click(); }
+    public void clickLoginBtn() {
+        loginBtn().click();
+    }
 
     /***
      * Login with username and password
      * @param username
      * @param password
      */
-    public void login(String username, String password){
+    public void login(String username, String password) {
         inputUserName().sendKeys(username);
         inputPassword().sendKeys(password);
         clickLoginBtn();

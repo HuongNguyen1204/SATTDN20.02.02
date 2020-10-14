@@ -17,7 +17,7 @@ public class BaseTest {
         BrowserHelper.navigateToUrl(Constants.BASE_URL);
     }
 
-//    @AfterMethod
+    @AfterMethod
     public void closePage() {
         BrowserHelper.quitBrowser();
     }

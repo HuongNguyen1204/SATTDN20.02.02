@@ -13,17 +13,6 @@ public class DataHelper {
     }
 
     /***
-     * Return date from the current day amountOfDays
-     * @param numDate
-     * @return
-     */
-    public static String getDateFromCurrentDate(int numDate) {
-        LocalDateTime currentDate = LocalDateTime.now();
-        String formatDatetime = "M/d/YYYY";
-        return currentDate.plusDays(numDate).format(DateTimeFormatter.ofPattern(formatDatetime));
-    }
-
-    /***
      * Return number random from 1 to n
      * @param num
      * @return
@@ -31,4 +20,10 @@ public class DataHelper {
     public static int randomNumber(int num) {
         return faker.number().numberBetween(1, num);
     }
+
+    public static String randomText() {
+        return faker.name().title();
+    }
+
+
 }
