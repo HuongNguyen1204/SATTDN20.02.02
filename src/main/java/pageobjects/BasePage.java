@@ -15,17 +15,18 @@ public class BasePage {
     private By _saveAndCloseBtn = By.cssSelector("#toolbar button.button-save");
     private By _savedSuccessMessage = By.cssSelector("div.alert-success div.alert-message");
     private By _searchToolBtn = By.xpath("//button[normalize-space()='Search Tools']");
-    private By _statusSelect = By.id("filter_state_chzn");
+    private By _statusSelect = By.id("filter_published_chzn");
     private By _trashBtn = By.cssSelector("#toolbar-trash button");
+    private By _helpBtn = By.cssSelector("#toolbar button[rel=help]");
     private By _listLimit = By.id("list_limit_chzn");
-    private By _allItem = By.cssSelector("#list_limit_chzn ul li:last-child");
     private By _editBtn = By.cssSelector("#toolbar-edit button");
     private String _menuItem = "//ul[@id='menu']//li//a[normalize-space(.)='%s']";
     private String _nameOption = "//div[@class='controls']//a[.='%s']";
     private String _subMenuItem = "//ul[@id='nav-empty']//a[normalize-space(.)='%s']";
-    private String _typeStatus = "//div[@id='filter_state_chzn']//ul/li[.='%s']";
+    private String _typeStatus = "//div[@id='filter_published_chzn']//ul/li[.='%s']";
     private String _checkboxBtn = "//table//tbody//a[normalize-space()='%s']/../.. //preceding-sibling::td//input[@type='checkbox']";
-    private String _titlePosted = "//tbody//td[@class='has-context']//a[normalize-space()='%s']";
+    private String _titlePosted = "//tbody//td//a[normalize-space()='%s']";
+    private String _quantityItem = "//div[@id='list_limit_chzn']//ul//li[normalize-space()='%s']";
 
     //Element
     private WebElement menuItem(String nameMenuItem) {
@@ -80,11 +81,15 @@ public class BasePage {
         return getWebDriver().findElement(_listLimit);
     }
 
-    private WebElement allItem() {
-        return getWebDriver().findElement(_allItem);
+    private WebElement editBtn() {
+        return getWebDriver().findElement(_editBtn);
     }
 
-    private WebElement editBtn() { return getWebDriver().findElement(_editBtn); }
+    private WebElement quantityItem(String numberItems) {
+        return getWebDriver().findElement(By.xpath(String.format(_quantityItem, numberItems)));
+    }
+
+    private WebElement helpBtn() { return getWebDriver().findElement(_helpBtn); }
 
     //Method
     public void clickMenuItem(String menuItemName) {
@@ -108,12 +113,12 @@ public class BasePage {
         trashBtn().click();
     }
 
-    public void clickEditBtn() { editBtn().click(); }
+    public void clickEditBtn() {
+        editBtn().click();
+    }
 
     public void clickCheckboxBtnByName(String name) {
-        waitForElement(Constants.TIMES_WAIT_ELEMENTS, checkboxBtn(name));
-        scrollToClick(checkboxBtn(name));
-//        checkboxBtn(name).click();
+        BrowserHelper.clickByJs(checkboxBtn(name));
     }
 
     public void clickSearchToolBtn() {
@@ -195,19 +200,24 @@ public class BasePage {
     }
 
     /***
-     * View all item of table
-     */
-    public void showAllItem() {
-        listLimitItem().click();
-        allItem().click();
-    }
-
-    /***
      * Deletem item by name title
      * @param nameItem
      */
     public void editItem(String nameItem) {
         clickCheckboxBtnByName(nameItem);
         clickEditBtn();
+    }
+
+    /***
+     * Change quantity item by number
+     * @param quantity
+     */
+    public void viewItemByQuantity(String quantity) {
+        listLimitItem().click();
+        quantityItem(quantity).click();
+    }
+
+    public void clickHelpBtn() {
+        helpBtn().click();
     }
 }

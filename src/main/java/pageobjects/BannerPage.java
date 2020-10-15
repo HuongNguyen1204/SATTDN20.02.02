@@ -1,8 +1,9 @@
 package pageobjects;
 
-import helpers.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 import static helpers.BrowserHelper.getWebDriver;
 
@@ -17,6 +18,7 @@ public class BannerPage extends BasePage {
     private By _clientSelect = By.id("jform_cid_chzn");
     private By _statusSelect = By.id("jform_state_chzn");
     private By _bannerDetail = By.xpath("//ul[@id='myTabTabs']//a[.='Banner Details']");
+    private By _rowsTable = By.cssSelector(".table-striped tbody tr");
     private String _itemTypeCategories = "//div[@id='jform_catid_chzn']//ul//li[.='%s']";
     private String _itemClient = "//div[@id='jform_cid_chzn']//ul//li[.='%s']";
     private String _typeStatusSelect =  "//div[@id='jform_state_chzn']//ul//li[.='%s']";
@@ -65,8 +67,9 @@ public class BannerPage extends BasePage {
 
     private WebElement typeStatusSelect(String name) { return getWebDriver().findElement(By.xpath(String.format(_typeStatusSelect,name))); }
 
-    // Method
+    private List<WebElement> rowsTable() {return getWebDriver().findElements(_rowsTable); }
 
+    // Method
     /***
      * Fill data to clients form
      * @param textClientName
@@ -125,5 +128,15 @@ public class BannerPage extends BasePage {
     public void chooseStatus(String nameStatus){
         statusSelect().click();
         typeStatusSelect(nameStatus).click();
+    }
+
+    public void clearDataClientForm(){
+        nameInput().clear();
+        contactName().clear();
+        contactEmail().clear();
+    }
+
+    public boolean compareQuantityItem(String quantity){
+        return rowsTable().size()<= Integer.parseInt(quantity);
     }
 }

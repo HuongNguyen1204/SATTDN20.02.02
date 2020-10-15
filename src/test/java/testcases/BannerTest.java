@@ -19,7 +19,7 @@ public class BannerTest extends BaseTest {
         bannerPage = new BannerPage();
     }
 
-//    @Test(testName = "TC_JOOMLA_BANNERS_BANNERS_006", description = "User can send a banner to trash")
+    @Test(testName = "TC_JOOMLA_BANNERS_BANNERS_006", description = "User can send a banner to trash")
     public void TC_JOOMLA_BANNERS_BANNERS_006() {
         Log.startTestCase("TC_JOOMLA_BANNERS_BANNERS_006 : User can send a banner to trash");
 
@@ -99,12 +99,12 @@ public class BannerTest extends BaseTest {
         Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_BANNER_SUCCESS,"Message saved banner does not match");
 
         Log.info("[STEP-25] - Click to show all banner ");
-        bannerPage.showAllItem();
+        bannerPage.viewItemByQuantity(Constants.ALL_QUANTITY);
 
         Log.info("[STEP-26] - Move the banner just posted to trash");
         bannerPage.deleteItem(nameBanner);
 
-        Log.info("[STEP-27] - Assert trash Banner success");
+        Log.info("[STEP-27] - Assert message trash Banner success");
         Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.TRASH_SUCCESS);
 
         Log.info("[STEP-28] - View item just trashed");
@@ -114,7 +114,7 @@ public class BannerTest extends BaseTest {
         Assert.assertTrue(bannerPage.doesShowTitle(nameBanner),"item just trashed is not displays");
     }
 
-//    @Test(testName = "TC_JOOMLA_BANNERS_BANNERS_013", description = "User can create a new banner by using 'Save as Copy' button")
+    @Test(testName = "TC_JOOMLA_BANNERS_BANNERS_013", description = "User can create a new banner by using 'Save as Copy' button")
     public void TC_JOOMLA_BANNERS_BANNERS_013() {
         Log.startTestCase("TC_JOOMLA_BANNERS_BANNERS_013 : User can create a new banner by using 'Save as Copy' button");
 
@@ -194,13 +194,13 @@ public class BannerTest extends BaseTest {
         Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_BANNER_SUCCESS,"success message save banner does not matched");
 
         Log.info("[STEP-25] - Click to show all banner ");
-        bannerPage.showAllItem();
+        bannerPage.viewItemByQuantity(Constants.ALL_QUANTITY);
 
         Log.info("[STEP-26] - Check item banner just posted is displays");
         Assert.assertTrue(bannerPage.doesShowTitle(nameBanner),"The item banner just posted is not displays");
     }
 
-//    @Test(testName = "TC_JOOMLA_BANNERS_CLIENTS_002", description = "User can edit a client")
+    @Test(testName = "TC_JOOMLA_BANNERS_CLIENTS_002", description = "User can edit a client")
     public void TC_JOOMLA_BANNERS_CLIENTS_002() {
         Log.startTestCase("TC_JOOMLA_BANNERS_CLIENTS_002 : User can edit a client");
 
@@ -233,27 +233,30 @@ public class BannerTest extends BaseTest {
         Log.info("[STEP-9] - Assert saved clients success");
         Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CLIENTS_SUCCESS,"success message save client does not matched");
 
-        Log.info("[STEP-25] - Click to show all client ");
-        bannerPage.showAllItem();
+        Log.info("[STEP-10] - Click to show all client ");
+        bannerPage.viewItemByQuantity(Constants.ALL_QUANTITY);
 
-        Log.info("[STEP-10] - Click edit the client item just posted");
+        Log.info("[STEP-11] - Click edit the client item just posted");
         bannerPage.editItem(nameClientRandom);
 
-        Log.info("[STEP-11] - Init new data for edit clients");
+        Log.info("[STEP-12] - Clear data old");
+        bannerPage.clearDataClientForm();
+
+        Log.info("[STEP-13] - Init new data for edit clients");
         String editNameClient = DataHelper.randomText();
         String editNameContact = DataHelper.randomText();
         String editEmail = DataHelper.randomEmail();
 
-        Log.info("[STEP-12] - Fill this data to contact form");
+        Log.info("[STEP-14] - Fill this data to contact form");
         bannerPage.fillDataToClientForm(editNameClient, editNameContact, editEmail);
 
-        Log.info("[STEP-13] - Click save and close button");
+        Log.info("[STEP-15] - Click save and close button");
         bannerPage.clickSaveAndCloseBtn();
 
-        Log.info("[STEP-14] - Assert saved clients success");
+        Log.info("[STEP-16] - Assert saved clients success");
         Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CLIENTS_SUCCESS,"success message save client does not matched");
 
-        Log.info("[STEP-26] - Check item banner just posted is displays");
+        Log.info("[STEP-17] - Check item banner just posted is displays");
         Assert.assertTrue(bannerPage.doesShowTitle(editNameClient),"the item client just posted is not display");
     }
 
@@ -297,5 +300,28 @@ public class BannerTest extends BaseTest {
         bannerPage.viewItemByStatus("Unpublished");
 
         Assert.assertTrue(bannerPage.doesShowTitle(nameClientRandom),"the item client just posted is not display");
+    }
+
+    @Test(testName = "TC_JOOMLA_BANNERS_CLIENTS_016", description = "Verify that user can change the quantity of items displayed in client table")
+    public void TC_JOOMLA_BANNERS_CLIENTS_016() {
+        Log.startTestCase("TC_JOOMLA_BANNERS_CLIENTS_016 : Verify that user can change the quantity of items displayed in client table");
+
+        Log.info("[STEP-1] - Log in with account registered before");
+        loginPage.login(Constants.VALID_USERNAME, Constants.VALID_PASSWORD);
+
+        Log.info("[STEP-2] - Click content on menu nav bar)");
+        bannerPage.clickMenuItem(Constants.COMPONENTS_MENU);
+
+        Log.info("[STEP-3] - Hover Banner item of Components menu");
+        bannerPage.hoverMenuItemDrp(Constants.BANNER_MENU);
+
+        Log.info("[STEP-4] - Click Clients item of Banner item");
+        bannerPage.clickSubMenuItem(Constants.CLIENTS_ITEMS);
+
+        Log.info("[STEP-5] - Click to view 5 item");
+        bannerPage.viewItemByQuantity(Constants.FIVE_ITEM);
+
+        Log.info("[STEP-6] - Assert the quantity item after change the quantity");
+        Assert.assertTrue(bannerPage.compareQuantityItem(Constants.FIVE_ITEM),"The quantity of client display wrong");
     }
 }

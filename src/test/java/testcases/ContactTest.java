@@ -46,7 +46,7 @@ public class ContactTest extends BaseTest{
         Assert.assertEquals(contactPage.getSavedMessageSuccess(),Constants.SAVE_CONTACT_SUCCESS);
 
         Log.info("[STEP-8] - Select to show all contact");
-        contactPage.showAllItem();
+        contactPage.viewItemByQuantity(Constants.ALL_QUANTITY);
 
         Log.info("[STEP-9] - Assert the tile contact just saved");
         Assert.assertTrue(contactPage.doesShowTitle(titleRandom));
@@ -82,7 +82,7 @@ public class ContactTest extends BaseTest{
         Assert.assertEquals(contactPage.getSavedMessageSuccess(),Constants.SAVE_CONTACT_SUCCESS);
 
         Log.info("[STEP-9] - Select to show all contact");
-        contactPage.showAllItem();
+        contactPage.viewItemByQuantity(Constants.ALL_QUANTITY);
 
         Log.info("[STEP-10] - Assert the tile contact just saved");
         Assert.assertTrue(contactPage.doesShowTitle(titleRandom));

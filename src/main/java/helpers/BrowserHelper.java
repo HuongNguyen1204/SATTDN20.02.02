@@ -13,6 +13,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Constants;
 import utilities.Log;
 
+import java.util.ArrayList;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class BrowserHelper {
@@ -92,4 +94,18 @@ public class BrowserHelper {
         action.moveToElement(element).perform();
     }
 
+    public static void clickByJs(WebElement element){
+        JavascriptExecutor executor = (JavascriptExecutor) driver;
+        executor.executeScript("arguments[0].click();", element);
+    }
+
+    public static void switchToWindow(String handels) {
+         driver.switchTo().window(handels);
+    }
+
+    public static boolean isShowHelpBrowser(String title){
+        for(String windowHandle  : getWebDriver().getWindowHandles())
+            switchToWindow(windowHandle);
+        return getWebDriver().getTitle().equalsIgnoreCase(title);
+    }
 }

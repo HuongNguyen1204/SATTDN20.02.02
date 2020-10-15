@@ -5,7 +5,8 @@
         <classes>
 <!--            <class name="testcases.ArticleTest"/>-->
 <!--            <class name="testcases.ContactTest"/>-->
-            <class name="testcases.BannerTest"/>
+<!--            <class name="testcases.BannerTest"/>-->
+            <class name="testcases.CategoryTest"/>
         </classes>
     </test>
     <test name="FirefoxTest">
