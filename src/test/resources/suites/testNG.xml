@@ -6,19 +6,28 @@
 <!--            <class name="testcases.ArticleTest"/>-->
 <!--            <class name="testcases.ContactTest"/>-->
 <!--            <class name="testcases.BannerTest"/>-->
-            <class name="testcases.CategoryTest"/>
+<!--            <class name="testcases.CategoryTest"/>-->
+<!--            <class name="testcases.WebLinkTest"/>-->
         </classes>
     </test>
     <test name="FirefoxTest">
         <parameter name="browser" value="FIREFOX" />
         <classes>
-
+<!--            <class name="testcases.ArticleTest"/>-->
+<!--            <class name="testcases.ContactTest"/>-->
+<!--            <class name="testcases.BannerTest"/>-->
+<!--            <class name="testcases.CategoryTest"/>-->
+<!--            <class name="testcases.WebLinkTest"/>-->
         </classes>
     </test>
     <test name="EdgeTest">
         <parameter name="browser" value="MICROSOFT_EDGE" />
         <classes>
-
+                <class name="testcases.ArticleTest"/>
+                <class name="testcases.ContactTest"/>
+                <class name="testcases.BannerTest"/>
+                <class name="testcases.CategoryTest"/>
+                <class name="testcases.WebLinkTest"/>
         </classes>
     </test>
 </suite>

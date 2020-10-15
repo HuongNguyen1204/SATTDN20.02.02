@@ -114,7 +114,7 @@ public class BannerTest extends BaseTest {
         Assert.assertTrue(bannerPage.doesShowTitle(nameBanner),"item just trashed is not displays");
     }
 
-    @Test(testName = "TC_JOOMLA_BANNERS_BANNERS_013", description = "User can create a new banner by using 'Save as Copy' button")
+//    @Test(testName = "TC_JOOMLA_BANNERS_BANNERS_013", description = "User can create a new banner by using 'Save as Copy' button")
     public void TC_JOOMLA_BANNERS_BANNERS_013() {
         Log.startTestCase("TC_JOOMLA_BANNERS_BANNERS_013 : User can create a new banner by using 'Save as Copy' button");
 
@@ -200,7 +200,7 @@ public class BannerTest extends BaseTest {
         Assert.assertTrue(bannerPage.doesShowTitle(nameBanner),"The item banner just posted is not displays");
     }
 
-    @Test(testName = "TC_JOOMLA_BANNERS_CLIENTS_002", description = "User can edit a client")
+//    @Test(testName = "TC_JOOMLA_BANNERS_CLIENTS_002", description = "User can edit a client")
     public void TC_JOOMLA_BANNERS_CLIENTS_002() {
         Log.startTestCase("TC_JOOMLA_BANNERS_CLIENTS_002 : User can edit a client");
 
@@ -260,7 +260,7 @@ public class BannerTest extends BaseTest {
         Assert.assertTrue(bannerPage.doesShowTitle(editNameClient),"the item client just posted is not display");
     }
 
-    @Test(testName = "TO_JOOMLA_BANNERS_CLIENTS_009", description = "User can search a client by using filter dropdown list")
+//    @Test(testName = "TC_JOOMLA_BANNERS_CLIENTS_009", description = "User can search a client by using filter dropdown list")
     public void TO_JOOMLA_BANNERS_CLIENTS_009(){
         Log.startTestCase("TO_JOOMLA_BANNERS_CLIENTS_009 : User can search a client by using filter dropdown list");
 
@@ -288,7 +288,7 @@ public class BannerTest extends BaseTest {
         bannerPage.fillDataToClientForm(nameClientRandom, nameContactRandom, emailRandom);
 
         Log.info("[STEP-8] - Select unpublished status");
-        bannerPage.chooseStatus("Unpublished");
+        bannerPage.chooseStatus(Constants.STATUS_UNPUBLISHED);
 
         Log.info("[STEP-8] - Click save and close button");
         bannerPage.clickSaveAndCloseBtn();
@@ -297,12 +297,12 @@ public class BannerTest extends BaseTest {
         Assert.assertEquals(bannerPage.getSavedMessageSuccess(), Constants.SAVE_CLIENTS_SUCCESS,"success message save client does not matched");
 
         Log.info("[STEP-10] - View client by unpublished status");
-        bannerPage.viewItemByStatus("Unpublished");
+        bannerPage.viewBannerByStatus(Constants.STATUS_UNPUBLISHED);
 
         Assert.assertTrue(bannerPage.doesShowTitle(nameClientRandom),"the item client just posted is not display");
     }
 
-    @Test(testName = "TC_JOOMLA_BANNERS_CLIENTS_016", description = "Verify that user can change the quantity of items displayed in client table")
+//    @Test(testName = "TC_JOOMLA_BANNERS_CLIENTS_016", description = "Verify that user can change the quantity of items displayed in client table")
     public void TC_JOOMLA_BANNERS_CLIENTS_016() {
         Log.startTestCase("TC_JOOMLA_BANNERS_CLIENTS_016 : Verify that user can change the quantity of items displayed in client table");
 

@@ -12,17 +12,18 @@ public class BasePage {
 
     //Locator
     private By _newBtn = By.cssSelector("#toolbar button.button-new");
-    private By _saveAndCloseBtn = By.cssSelector("#toolbar button.button-save");
+    private By _saveAndCloseBtn = By.cssSelector("#toolbar-save button");
     private By _savedSuccessMessage = By.cssSelector("div.alert-success div.alert-message");
     private By _searchToolBtn = By.xpath("//button[normalize-space()='Search Tools']");
-    private By _statusSelect = By.id("filter_published_chzn");
+    private By _statusSelectSearchTool = By.id("filter_published_chzn");
     private By _trashBtn = By.cssSelector("#toolbar-trash button");
     private By _helpBtn = By.cssSelector("#toolbar button[rel=help]");
     private By _listLimit = By.id("list_limit_chzn");
     private By _editBtn = By.cssSelector("#toolbar-edit button");
+    private By _statusSelect = By.id("jform_state_chzn");
     private String _menuItem = "//ul[@id='menu']//li//a[normalize-space(.)='%s']";
     private String _nameOption = "//div[@class='controls']//a[.='%s']";
-    private String _subMenuItem = "//ul[@id='nav-empty']//a[normalize-space(.)='%s']";
+    private String _subMenuItem = "//ul[@id='nav-empty']//li//a[contains(text(),'%s')]";
     private String _typeStatus = "//div[@id='filter_published_chzn']//ul/li[.='%s']";
     private String _checkboxBtn = "//table//tbody//a[normalize-space()='%s']/../.. //preceding-sibling::td//input[@type='checkbox']";
     private String _titlePosted = "//tbody//td//a[normalize-space()='%s']";
@@ -65,8 +66,8 @@ public class BasePage {
         return getWebDriver().findElement(By.xpath(String.format(_checkboxBtn, nameTitle)));
     }
 
-    private WebElement statusSelect() {
-        return getWebDriver().findElement(_statusSelect);
+    private WebElement statusSelectSearchTool() {
+        return getWebDriver().findElement(_statusSelectSearchTool);
     }
 
     private WebElement typeStatus(String nameType) {
@@ -91,6 +92,10 @@ public class BasePage {
 
     private WebElement helpBtn() { return getWebDriver().findElement(_helpBtn); }
 
+    private WebElement statusSelect() {
+        return BrowserHelper.getWebDriver().findElement(_statusSelect);
+    }
+
     //Method
     public void clickMenuItem(String menuItemName) {
         waitForElement(Constants.TIMES_WAIT_ELEMENTS, menuItem(menuItemName));
@@ -106,7 +111,7 @@ public class BasePage {
     }
 
     public void clickSaveAndCloseBtn() {
-        saveAndCloseBtn().click();
+        BrowserHelper.clickByJs(saveAndCloseBtn());
     }
 
     public void clickTrashBtn() {
@@ -125,10 +130,11 @@ public class BasePage {
         searchToolBtn().click();
     }
 
-    public void clickStatusSelect() {
-        statusSelect().click();
+    public void clickStatusSearchTool() {
+        statusSelectSearchTool().click();
     }
 
+    public void clickToStatusSelect(){ statusSelect().click(); }
     /***
      * Get text of elements
      * @param element
@@ -186,7 +192,7 @@ public class BasePage {
      */
     public void viewItemByStatus(String nameStatus) {
         clickSearchToolBtn();
-        clickStatusSelect();
+        clickStatusSearchTool();
         typeStatus(nameStatus).click();
     }
 
@@ -219,5 +225,10 @@ public class BasePage {
 
     public void clickHelpBtn() {
         helpBtn().click();
+    }
+
+    public void waitToClick( WebElement element ){
+        BrowserHelper.waitForElement(Constants.TIMES_WAIT_ELEMENTS,element);
+        element.click();
     }
 }

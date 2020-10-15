@@ -35,7 +35,7 @@ public class ArticleTest extends BaseTest {
         articlePage.clickNewBtn();
 
         Log.info("[STEP-5] - Fill data to article form");
-        articlePage.fillDataArticleForm(Constants.TITLE_ARTICLE, Constants.STATUS, Constants.CATEGORY_ARTICLE, Constants.CONTENT_AREA);
+        articlePage.fillDataArticleForm(Constants.TITLE_ARTICLE, Constants.STATUS_PUBLISHED, Constants.CATEGORY_ARTICLE, Constants.CONTENT_AREA);
 
         Log.info("[STEP-6] - Click save button");
         articlePage.clickSaveAndCloseBtn();
@@ -64,7 +64,7 @@ public class ArticleTest extends BaseTest {
         articlePage.clickNewBtn();
 
         Log.info("[STEP-5] - Fill data to article form");
-        articlePage.fillDataArticleForm(Constants.TITLE_ARTICLE, Constants.STATUS, Constants.CATEGORY_ARTICLE, Constants.CONTENT_AREA);
+        articlePage.fillDataArticleForm(Constants.TITLE_ARTICLE, Constants.STATUS_PUBLISHED, Constants.CATEGORY_ARTICLE, Constants.CONTENT_AREA);
 
         Log.info("[STEP-6] - Insert image");
         articlePage.insertImage();

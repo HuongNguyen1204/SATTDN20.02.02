@@ -12,9 +12,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Constants;
 import utilities.Log;
-
-import java.util.ArrayList;
-import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class BrowserHelper {
@@ -61,14 +58,6 @@ public class BrowserHelper {
 
     public static WebDriver getWebDriver() {
         return driver;
-    }
-
-    public static void acceptAlert() {
-        driver.switchTo().alert().accept();
-    }
-
-    public static void dismissAlert() {
-        driver.switchTo().alert().dismiss();
     }
 
     public static void scrollToView(WebElement element) {

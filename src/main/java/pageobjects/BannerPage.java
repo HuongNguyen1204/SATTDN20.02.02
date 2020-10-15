@@ -2,10 +2,10 @@ package pageobjects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-
+import utilities.Constants;
 import java.util.List;
-
 import static helpers.BrowserHelper.getWebDriver;
+import static helpers.BrowserHelper.waitForElement;
 
 public class BannerPage extends BasePage {
 
@@ -19,10 +19,11 @@ public class BannerPage extends BasePage {
     private By _statusSelect = By.id("jform_state_chzn");
     private By _bannerDetail = By.xpath("//ul[@id='myTabTabs']//a[.='Banner Details']");
     private By _rowsTable = By.cssSelector(".table-striped tbody tr");
+    private By _stateSelectSearchTool = By.id("filter_state_chzn");
     private String _itemTypeCategories = "//div[@id='jform_catid_chzn']//ul//li[.='%s']";
     private String _itemClient = "//div[@id='jform_cid_chzn']//ul//li[.='%s']";
     private String _typeStatusSelect =  "//div[@id='jform_state_chzn']//ul//li[.='%s']";
-
+    private String _statusBySearchTool = "//div[@id='filter_state_chzn']//ul/li[.='%s']";
 
     // Element
     private WebElement nameInput() {
@@ -67,6 +68,10 @@ public class BannerPage extends BasePage {
 
     private WebElement typeStatusSelect(String name) { return getWebDriver().findElement(By.xpath(String.format(_typeStatusSelect,name))); }
 
+    private WebElement stateSelectSearchTool() { return getWebDriver().findElement(_stateSelectSearchTool); }
+
+    private WebElement statusBySearchTool(String name) { return  getWebDriver().findElement(By.xpath(String.format(_statusBySearchTool,name))); }
+
     private List<WebElement> rowsTable() {return getWebDriver().findElements(_rowsTable); }
 
     // Method
@@ -77,6 +82,7 @@ public class BannerPage extends BasePage {
      * @param textContactEmail
      */
     public void fillDataToClientForm(String textClientName, String textContactName, String textContactEmail) {
+        waitForElement(Constants.TIMES_WAIT_ELEMENTS,nameInput());
         nameInput().sendKeys(textClientName);
         contactName().sendKeys(textContactName);
         contactEmail().sendKeys(textContactEmail);
@@ -138,5 +144,19 @@ public class BannerPage extends BasePage {
 
     public boolean compareQuantityItem(String quantity){
         return rowsTable().size()<= Integer.parseInt(quantity);
+    }
+
+    public void chooseStatusByName( String name ) {
+        waitToClick( statusBySearchTool(name));
+    }
+
+    /***
+     * View item by status
+     * @param nameStatus
+     */
+    public void viewBannerByStatus(String nameStatus) {
+        clickSearchToolBtn();
+        stateSelectSearchTool().click();
+        chooseStatusByName(nameStatus);
     }
 }

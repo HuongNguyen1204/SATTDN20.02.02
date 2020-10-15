@@ -13,7 +13,6 @@ public class ArticlePage extends BasePage {
     private By _titleInput = By.id("jform_title");
     private By _articleTextArea = By.id("jform_articletext_ifr");
     private By _imageIcon = By.xpath("//div [@class='js-editor-tinymce'] //button[.='Image']");
-    private By _statusSelect = By.id("jform_state_chzn");
     private By _categorySelect = By.id("jform_catid_chzn");
     private By _firstTile = By.cssSelector("tbody tr:first-child a[data-original-title=Edit]");
     private By _imageItem = By.xpath("//div[normalize-space(.)='powered_by...']//preceding-sibling::div");
@@ -22,13 +21,8 @@ public class ArticlePage extends BasePage {
     private By _imageIframe = By.id("imageframe");
 
     // Element
-
     private WebElement titleInput() {
         return BrowserHelper.getWebDriver().findElement(_titleInput);
-    }
-
-    private WebElement statusSelect() {
-        return BrowserHelper.getWebDriver().findElement(_statusSelect);
     }
 
     private WebElement categorySelect() {
@@ -65,7 +59,7 @@ public class ArticlePage extends BasePage {
 
     // Method
     public void clickImageTab() {
-        imageTab().click();
+        waitToClick(imageTab());
     }
 
     public void clickInsertButton() {
@@ -81,7 +75,7 @@ public class ArticlePage extends BasePage {
      */
     public void fillDataArticleForm(String title, String status, String category, String text) {
         titleInput().sendKeys(title);
-        statusSelect().click();
+        clickToStatusSelect();
         clickOptionName(status);
         categorySelect().click();
         clickOptionName(category);
@@ -104,6 +98,7 @@ public class ArticlePage extends BasePage {
         BrowserHelper.switchToDefaultContent();
         BrowserHelper.switchToIframe(parentImageIframe());
         clickInsertButton();
+        BrowserHelper.switchToDefaultContent();
     }
 
 

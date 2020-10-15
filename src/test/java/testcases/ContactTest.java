@@ -37,7 +37,7 @@ public class ContactTest extends BaseTest{
 
         Log.info("[STEP-5] - Fill data to contact form");
         String titleRandom = DataHelper.randomText();
-        contactPage.fillDataContactForm(titleRandom,Constants.STATUS,Constants.CATEGORY_CONTACT);
+        contactPage.fillDataContactForm(titleRandom,Constants.STATUS_PUBLISHED,Constants.CATEGORY_CONTACT);
 
         Log.info("[STEP-6] - Click save and close button");
         contactPage.clickSaveAndCloseBtn();
@@ -70,7 +70,7 @@ public class ContactTest extends BaseTest{
 
         Log.info("[STEP-5] - Fill data to contact form");
         String titleRandom = DataHelper.randomText();
-        contactPage.fillDataContactForm(titleRandom,Constants.STATUS,Constants.CATEGORY_CONTACT);
+        contactPage.fillDataContactForm(titleRandom,Constants.STATUS_PUBLISHED,Constants.CATEGORY_CONTACT);
 
         Log.info("[STEP-6] - Insert image to contact form");
         contactPage.insertImage();

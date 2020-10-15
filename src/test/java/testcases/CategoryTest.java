@@ -58,7 +58,7 @@ public class CategoryTest extends BaseTest {
         Log.info("[STEP-5] - Ordering categories article");
         categoryPage.orderingCategory();
 
-        Log.info("[STEP-5] - Assert the sorted title and the final title");
+        Log.info("[STEP-6] - Assert the sorted title and the final title");
         Assert.assertEquals(firstTitle,categoryPage.getLastTitle(),"The item is not ordering");
     }
 }

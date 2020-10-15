@@ -12,18 +12,9 @@ public class DataHelper {
         return faker.internet().emailAddress();
     }
 
-    /***
-     * Return number random from 1 to n
-     * @param num
-     * @return
-     */
-    public static int randomNumber(int num) {
-        return faker.number().numberBetween(1, num);
-    }
-
     public static String randomText() {
         return faker.name().title();
     }
 
-
+    public static String randomUrl() { return faker.internet().url(); }
 }

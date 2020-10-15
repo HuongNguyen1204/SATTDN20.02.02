@@ -86,5 +86,6 @@ public class ContactPage extends BasePage {
         BrowserHelper.switchToDefaultContent();
         BrowserHelper.switchToIframe(parentImageIframe());
         clickInsertButton();
+        BrowserHelper.switchToDefaultContent();
     }
 }
