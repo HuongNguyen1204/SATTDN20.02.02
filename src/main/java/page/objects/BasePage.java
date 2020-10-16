@@ -21,9 +21,9 @@ public class BasePage {
     private By _listLimit = By.id("list_limit_chzn");
     private By _editBtn = By.cssSelector("#toolbar-edit button");
     private By _statusSelect = By.id("jform_state_chzn");
+    private String _itemSubMenu = "//ul[@id='submenu']//li//a[contains(text(),'%s')]";
     private String _menuItem = "//ul[@id='menu']//li//a[normalize-space(.)='%s']";
     private String _nameOption = "//div[@class='controls']//a[.='%s']";
-    private String _subMenuItem = "//ul[@id='nav-empty']//li//a[contains(text(),'%s')]";
     private String _typeStatus = "//div[@id='filter_published_chzn']//ul/li[.='%s']";
     private String _checkboxBtn = "//table//tbody//a[normalize-space()='%s']/../.. //preceding-sibling::td//input[@type='checkbox']";
     private String _titlePosted = "//tbody//td//a[normalize-space()='%s']";
@@ -51,7 +51,7 @@ public class BasePage {
     }
 
     private WebElement subMenuItem(String nameSubItem) {
-        return getWebDriver().findElement(By.xpath(String.format(_subMenuItem, nameSubItem)));
+        return getWebDriver().findElement(By.xpath(String.format(_itemSubMenu, nameSubItem)));
     }
 
     private WebElement trashBtn() {
@@ -90,7 +90,9 @@ public class BasePage {
         return getWebDriver().findElement(By.xpath(String.format(_quantityItem, numberItems)));
     }
 
-    private WebElement helpBtn() { return getWebDriver().findElement(_helpBtn); }
+    private WebElement helpBtn() {
+        return getWebDriver().findElement(_helpBtn);
+    }
 
     private WebElement statusSelect() {
         return getWebDriver().findElement(_statusSelect);
@@ -134,7 +136,10 @@ public class BasePage {
         statusSelectSearchTool().click();
     }
 
-    public void clickToStatusSelect(){ statusSelect().click(); }
+    public void clickToStatusSelect() {
+        statusSelect().click();
+    }
+
     /***
      * Get text of elements
      * @param element
@@ -161,21 +166,6 @@ public class BasePage {
         return getText(savedSuccessMessage());
     }
 
-    /***
-     * Hover to menu dropdown
-     * @param nameMenuItem
-     */
-    public void hoverMenuItemDrp(String nameMenuItem) {
-        BrowserHelper.performToElemnt(menuItem(nameMenuItem));
-    }
-
-    /***
-     * Click to sub menu of menu dropdown
-     * @param name
-     */
-    public void clickSubMenuItem(String name) {
-        subMenuItem(name).click();
-    }
 
     /***
      * Deletem item by name title
@@ -227,8 +217,17 @@ public class BasePage {
         helpBtn().click();
     }
 
-    public void waitToClick( WebElement element ){
-        BrowserHelper.waitForElement(Constants.TIMES_WAIT_ELEMENTS,element);
+    public void waitToClick(WebElement element) {
+        BrowserHelper.waitForElement(Constants.TIMES_WAIT_ELEMENTS, element);
         element.click();
     }
+
+    /***
+     * Click to sub menu of menu dropdown
+     * @param name
+     */
+    public void clickToSubMenu(String name) {
+        waitToClick(subMenuItem(name));
+    }
+
 }

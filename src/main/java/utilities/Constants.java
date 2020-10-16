@@ -31,7 +31,7 @@ public class Constants {
     public static final String TITLE_ARTICLE = "Test Article 1";
     public static final String CONTENT_AREA = " Sample Data-Articles";
     public static final String SAVED_SUCCESS_MESS = "Article saved.";
-    public static final String CATEGORY_ARTICLE = "- Sample Data-Articles";
+    public static final String CATEGORY_ARTICLE = "A Darkling Plain";
 
     //Contact page
     public static final String SAVE_CONTACT_SUCCESS = "Contact saved.";

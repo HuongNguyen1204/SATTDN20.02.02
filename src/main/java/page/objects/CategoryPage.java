@@ -42,4 +42,8 @@ public class CategoryPage extends BasePage {
     public String getLastTitle() {
         return getText(lastTitle());
     }
+
+    public boolean compareCategory(String beforeTitle){
+        return beforeTitle.equalsIgnoreCase(getFirstTitle());
+    }
 }
