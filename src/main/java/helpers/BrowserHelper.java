@@ -12,12 +12,13 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import utilities.Constants;
 import utilities.Log;
+
 import java.util.concurrent.TimeUnit;
 
 public class BrowserHelper {
     private static WebDriver driver;
 
-    public enum DriverType {CHROME, FIREFOX, MICROSOFT_EDGE}
+    public enum DriverType {CHROME, FIREFOX, EDGE}
 
     public static void navigateToUrl(String url) {
         driver.get(url);
@@ -35,7 +36,7 @@ public class BrowserHelper {
                 Log.info("------------------------------- OPEN FIREFOX DRIVER -------------------------------");
                 driver = new FirefoxDriver();
                 break;
-            case MICROSOFT_EDGE:
+            case EDGE:
                 WebDriverManager.edgedriver().setup();
                 Log.info("------------------------------- OPEN EDGE DRIVER ----------------------------------");
                 driver = new EdgeDriver();
@@ -66,7 +67,7 @@ public class BrowserHelper {
     }
 
     public static void waitForElement(int seconds, WebElement element) {
-        WebDriverWait wait = new WebDriverWait(BrowserHelper.getWebDriver(), seconds);
+        WebDriverWait wait = new WebDriverWait(driver, seconds);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
 
@@ -83,17 +84,17 @@ public class BrowserHelper {
         action.moveToElement(element).perform();
     }
 
-    public static void clickByJs(WebElement element){
+    public static void clickByJs(WebElement element) {
         JavascriptExecutor executor = (JavascriptExecutor) driver;
         executor.executeScript("arguments[0].click();", element);
     }
 
     public static void switchToWindow(String handels) {
-         driver.switchTo().window(handels);
+        driver.switchTo().window(handels);
     }
 
-    public static boolean isShowHelpBrowser(String title){
-        for(String windowHandle  : getWebDriver().getWindowHandles())
+    public static boolean isShowHelpBrowser(String title) {
+        for (String windowHandle : driver.getWindowHandles())
             switchToWindow(windowHandle);
         return getWebDriver().getTitle().equalsIgnoreCase(title);
     }

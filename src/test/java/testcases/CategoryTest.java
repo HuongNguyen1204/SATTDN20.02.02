@@ -4,8 +4,8 @@ import helpers.BrowserHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageobjects.CategoryPage;
-import pageobjects.LoginPage;
+import page.objects.CategoryPage;
+import page.objects.LoginPage;
 import utilities.Constants;
 import utilities.Log;
 
@@ -36,7 +36,7 @@ public class CategoryTest extends BaseTest {
         categoryPage.clickHelpBtn();
 
         Log.info("[STEP-5] - Assert the help page is displays");
-        Assert.assertTrue(BrowserHelper.isShowHelpBrowser(Constants.TITLE_HELP_BROWSER));
+        Assert.assertTrue(BrowserHelper.isShowHelpBrowser(Constants.TITLE_HELP_BROWSER),"The help page is not display");
     }
 
     @Test(testName = "TO_JOOMLA_CATEGORY_MANAGER_014",description = "User can move may articles to another category")

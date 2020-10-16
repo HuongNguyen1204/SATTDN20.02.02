@@ -1,4 +1,4 @@
-package pageobjects;
+package page.objects;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;

@@ -4,9 +4,8 @@ import helpers.DataHelper;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageobjects.BannerPage;
-import pageobjects.LoginPage;
-import pageobjects.WebLinkPage;
+import page.objects.LoginPage;
+import page.objects.WebLinkPage;
 import utilities.Constants;
 import utilities.Log;
 
@@ -47,7 +46,7 @@ public class WebLinkTest extends BaseTest {
         webLinkPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-8] - Assert weblink saved success");
-        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS);
+        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS,"Save  sucess message does not matched");
 
         Log.info("[STEP-9] - Click to show all weblink ");
         webLinkPage.viewItemByQuantity(Constants.ALL_QUANTITY);
@@ -56,7 +55,7 @@ public class WebLinkTest extends BaseTest {
         webLinkPage.deleteItem(nameWebLinkRandom);
 
         Log.info("[STEP-27] - Assert message trash weblink success");
-        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.TRAHS_SUCCESS_WEBLINK);
+        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.TRAHS_SUCCESS_WEBLINK,"Trash sucess message does not matched");
 
         Log.info("[STEP-28] - View item just trashed");
         webLinkPage.viewItemByStatus(Constants.TRASHED_STATUS);
@@ -92,7 +91,7 @@ public class WebLinkTest extends BaseTest {
         webLinkPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-8] - Assert weblink saved success");
-        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS);
+        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS,"Save  sucess message does not matched");
 
         Log.info("[STEP-9] - Click content on menu nav bar)");
         webLinkPage.clickMenuItem(Constants.COMPONENTS_MENU);
@@ -114,7 +113,7 @@ public class WebLinkTest extends BaseTest {
         webLinkPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-15] - Assert weblink saved success");
-        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS);
+        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS,"Save  sucess message does not matched");
 
         webLinkPage.viewItemByQuantity(Constants.ALL_QUANTITY);
         Log.info("[STEP-16] - Get first title of categories");

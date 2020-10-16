@@ -1,4 +1,4 @@
-package pageobjects;
+package page.objects;
 
 import helpers.BrowserHelper;
 import org.openqa.selenium.By;
@@ -22,19 +22,19 @@ public class ArticlePage extends BasePage {
 
     // Element
     private WebElement titleInput() {
-        return BrowserHelper.getWebDriver().findElement(_titleInput);
+        return getWebDriver().findElement(_titleInput);
     }
 
     private WebElement categorySelect() {
-        return BrowserHelper.getWebDriver().findElement(_categorySelect);
+        return getWebDriver().findElement(_categorySelect);
     }
 
     private WebElement firstTile() {
-        return BrowserHelper.getWebDriver().findElement(_firstTile);
+        return getWebDriver().findElement(_firstTile);
     }
 
     private WebElement articleTextArea() {
-        return BrowserHelper.getWebDriver().findElement(_articleTextArea);
+        return getWebDriver().findElement(_articleTextArea);
     }
 
     private WebElement imageTab() {

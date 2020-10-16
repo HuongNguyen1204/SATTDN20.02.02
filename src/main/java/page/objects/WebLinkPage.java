@@ -1,6 +1,5 @@
-package pageobjects;
+package page.objects;
 
-import helpers.BrowserHelper;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 

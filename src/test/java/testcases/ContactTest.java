@@ -2,8 +2,8 @@ package testcases;
 
 import helpers.DataHelper;
 import org.testng.Assert;
-import pageobjects.ContactPage;
-import pageobjects.LoginPage;
+import page.objects.ContactPage;
+import page.objects.LoginPage;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import utilities.Constants;
@@ -43,13 +43,13 @@ public class ContactTest extends BaseTest{
         contactPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-7] - Assert saved contact success");
-        Assert.assertEquals(contactPage.getSavedMessageSuccess(),Constants.SAVE_CONTACT_SUCCESS);
+        Assert.assertEquals(contactPage.getSavedMessageSuccess(),Constants.SAVE_CONTACT_SUCCESS,"Save  sucess message does not matched");
 
         Log.info("[STEP-8] - Select to show all contact");
         contactPage.viewItemByQuantity(Constants.ALL_QUANTITY);
 
         Log.info("[STEP-9] - Assert the tile contact just saved");
-        Assert.assertTrue(contactPage.doesShowTitle(titleRandom));
+        Assert.assertTrue(contactPage.doesShowTitle(titleRandom),"The contact just posted is not display");
     }
 
     @Test(testName = "TC_JOOMLA_CONTACTS_013",description = "Verify user can add image to contact's information")
@@ -79,13 +79,13 @@ public class ContactTest extends BaseTest{
         contactPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-8] - Assert saved contact success");
-        Assert.assertEquals(contactPage.getSavedMessageSuccess(),Constants.SAVE_CONTACT_SUCCESS);
+        Assert.assertEquals(contactPage.getSavedMessageSuccess(),Constants.SAVE_CONTACT_SUCCESS,"Save  sucess message does not matched");
 
         Log.info("[STEP-9] - Select to show all contact");
         contactPage.viewItemByQuantity(Constants.ALL_QUANTITY);
 
         Log.info("[STEP-10] - Assert the tile contact just saved");
-        Assert.assertTrue(contactPage.doesShowTitle(titleRandom));
+        Assert.assertTrue(contactPage.doesShowTitle(titleRandom),"The contact just posted is not display");
 
     }
 }

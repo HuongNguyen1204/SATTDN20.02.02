@@ -1,10 +1,10 @@
 package testcases;
 
-import pageobjects.LoginPage;
+import page.objects.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pageobjects.ArticlePage;
+import page.objects.ArticlePage;
 import utilities.Constants;
 import utilities.Log;
 
@@ -41,10 +41,10 @@ public class ArticleTest extends BaseTest {
         articlePage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-7] - Assert saved article success");
-        Assert.assertEquals(articlePage.getSavedMessageSuccess(), Constants.SAVED_SUCCESS_MESS);
+        Assert.assertEquals(articlePage.getSavedMessageSuccess(), Constants.SAVED_SUCCESS_MESS,"Save  sucess message does not matched");
 
         Log.info("[STEP-8] - Check the Articles just posted displays");
-        Assert.assertEquals(articlePage.getFirstTitle(), Constants.TITLE_ARTICLE);
+        Assert.assertEquals(articlePage.getFirstTitle(), Constants.TITLE_ARTICLE,"The client just posted not display");
     }
 
     @Test(testName = "TC_JOOMLA_ARTICLE_013", description = "TC_JOOMLA_ARTICLE_013")
@@ -73,9 +73,9 @@ public class ArticleTest extends BaseTest {
         articlePage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-8] - Assert saved article success");
-        Assert.assertEquals(articlePage.getSavedMessageSuccess(), Constants.SAVED_SUCCESS_MESS);
+        Assert.assertEquals(articlePage.getSavedMessageSuccess(), Constants.SAVED_SUCCESS_MESS,"Save  sucess message does not matched");
 
         Log.info("[STEP-9] - Check the Articles just posted displays");
-        Assert.assertEquals(articlePage.getFirstTitle(), Constants.TITLE_ARTICLE);
+        Assert.assertEquals(articlePage.getFirstTitle(), Constants.TITLE_ARTICLE,"The article just posted is not display");
     }
 }

@@ -1,4 +1,4 @@
-package pageobjects;
+package page.objects;
 
 import helpers.BrowserHelper;
 import org.openqa.selenium.By;
@@ -93,7 +93,7 @@ public class BasePage {
     private WebElement helpBtn() { return getWebDriver().findElement(_helpBtn); }
 
     private WebElement statusSelect() {
-        return BrowserHelper.getWebDriver().findElement(_statusSelect);
+        return getWebDriver().findElement(_statusSelect);
     }
 
     //Method
