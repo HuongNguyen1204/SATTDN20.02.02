@@ -171,7 +171,6 @@ public class BasePage {
         return getText(savedSuccessMessage());
     }
 
-
     /***
      * Deletem item by name title
      * @param nameItem

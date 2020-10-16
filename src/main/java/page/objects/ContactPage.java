@@ -52,7 +52,6 @@ public class ContactPage extends BasePage {
         return getWebDriver().findElement(_insertBtn);
     }
 
-
     //Method
     public void fillDataContactForm(String title, String status, String category) {
         contactTile().sendKeys(title);
