@@ -10,7 +10,6 @@ public class CategoryPage extends BasePage {
     // Locator
     private By _orderBtn = By.cssSelector("thead tr th span[class='icon-menu-2']");
     private By _firstTitle = By.cssSelector("tbody tr:first-child a[data-original-title=Edit]");
-    private By _lastTitle = By.cssSelector("tbody tr:last-child a[data-original-title=Edit]");
 
     // Element
     private WebElement orderBtn() {
@@ -21,12 +20,7 @@ public class CategoryPage extends BasePage {
         return getWebDriver().findElement(_firstTitle);
     }
 
-    private WebElement lastTitle() {
-        return getWebDriver().findElement(_lastTitle);
-    }
-
     //Method
-
     /***
      * Click first categories article and click to order icon
      */
@@ -39,11 +33,7 @@ public class CategoryPage extends BasePage {
         return getText(firstTitle());
     }
 
-    public String getLastTitle() {
-        return getText(lastTitle());
-    }
-
-    public boolean compareCategory(String beforeTitle){
+    public boolean compareTitleCategory(String beforeTitle) {
         return beforeTitle.equalsIgnoreCase(getFirstTitle());
     }
 }

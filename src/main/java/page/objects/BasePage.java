@@ -21,6 +21,7 @@ public class BasePage {
     private By _listLimit = By.id("list_limit_chzn");
     private By _editBtn = By.cssSelector("#toolbar-edit button");
     private By _statusSelect = By.id("jform_state_chzn");
+    private By _anyLocatorHelpage = By.cssSelector("body h1");
     private String _itemSubMenu = "//ul[@id='submenu']//li//a[contains(text(),'%s')]";
     private String _menuItem = "//ul[@id='menu']//li//a[normalize-space(.)='%s']";
     private String _nameOption = "//div[@class='controls']//a[.='%s']";
@@ -96,6 +97,10 @@ public class BasePage {
 
     private WebElement statusSelect() {
         return getWebDriver().findElement(_statusSelect);
+    }
+
+    private WebElement anyLocatorHelpage() {
+        return getWebDriver().findElement(_anyLocatorHelpage);
     }
 
     //Method
@@ -230,4 +235,10 @@ public class BasePage {
         waitToClick(subMenuItem(name));
     }
 
+    public String getTitleHelpBrowser() {
+        for (String windowHandle : getWebDriver().getWindowHandles())
+            BrowserHelper.switchToWindow(windowHandle);
+        waitForElement(Constants.TIME_WAIT_FIRE_FOX, anyLocatorHelpage());
+        return getWebDriver().getTitle();
+    }
 }

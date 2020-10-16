@@ -51,16 +51,16 @@ public class WebLinkTest extends BaseTest {
         Log.info("[STEP-9] - Click to show all weblink ");
         webLinkPage.viewItemByQuantity(Constants.ALL_QUANTITY);
 
-        Log.info("[STEP-26] - Move the weblink just posted to trash");
+        Log.info("[STEP-10] - Move the weblink just posted to trash");
         webLinkPage.deleteItem(nameWebLinkRandom);
 
-        Log.info("[STEP-27] - Assert message trash weblink success");
+        Log.info("[STEP-11] - Assert message trash weblink success");
         Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.TRAHS_SUCCESS_WEBLINK,"Trash sucess message does not matched");
 
-        Log.info("[STEP-28] - View item just trashed");
+        Log.info("[STEP-12] - View item just trashed");
         webLinkPage.viewItemByStatus(Constants.TRASHED_STATUS);
 
-        Log.info("[STEP-29] - Check item just trashed is displays");
+        Log.info("[STEP-13] - Check item just trashed is displays");
         Assert.assertTrue(webLinkPage.doesShowTitle(nameWebLinkRandom),"item just trashed is not displays");
     }
 

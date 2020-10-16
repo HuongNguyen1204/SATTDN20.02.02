@@ -86,10 +86,4 @@ public class BrowserHelper {
     public static void switchToWindow(String handels) {
         driver.switchTo().window(handels);
     }
-
-    public static boolean isShowHelpBrowser(String title) {
-        for (String windowHandle : driver.getWindowHandles())
-            switchToWindow(windowHandle);
-        return getWebDriver().getTitle().equalsIgnoreCase(title);
-    }
 }

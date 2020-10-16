@@ -36,7 +36,7 @@ public class CategoryTest extends BaseTest {
         categoryPage.clickHelpBtn();
 
         Log.info("[STEP-5] - Assert the help page is displays");
-        Assert.assertTrue(BrowserHelper.isShowHelpBrowser(Constants.TITLE_HELP_BROWSER),"The help page is not display");
+        Assert.assertEquals(categoryPage.getTitleHelpBrowser(),Constants.TITLE_HELP_BROWSER,"The help page is not display");
     }
 
     @Test(testName = "TO_JOOMLA_CATEGORY_MANAGER_014",description = "User can move may articles to another category")
@@ -59,6 +59,6 @@ public class CategoryTest extends BaseTest {
         categoryPage.orderingCategory();
 
         Log.info("[STEP-6] - Assert the sorted title and the final title");
-        Assert.assertFalse(categoryPage.compareCategory(firstTitle),"The item is not ordering");
+        Assert.assertFalse(categoryPage.compareTitleCategory(firstTitle),"The item is not ordering");
     }
 }

@@ -6,8 +6,7 @@ public class Constants {
     public static final String BASE_URL = "http://13.82.211.128:8080/administrator/";
     public static final int TIMES_WAIT_ELEMENTS = 120;
     public static final int TIME_WAITS_DRIVER = 15;
-    public static final int NUM_RANDOM_START = 1;
-    public static final int DATE_FROM_CURRENT_DATE = 8;
+    public static final int TIME_WAIT_FIRE_FOX = 500;
     public static final String STATUS_PUBLISHED = "Published";
     public static final String STATUS_UNPUBLISHED = "Unpublished";
     public static final String TRASHED_STATUS = "Trashed";
