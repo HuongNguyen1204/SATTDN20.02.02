@@ -28,6 +28,7 @@
             <class name="testcases.ArticleTest"/>
             <class name="testcases.ContactTest"/>
             <class name="testcases.BannerTest"/>
+            <class name="testcases.BannerClientTest"/>
             <class name="testcases.CategoryTest"/>
             <class name="testcases.WebLinkTest"/>
         </classes>
