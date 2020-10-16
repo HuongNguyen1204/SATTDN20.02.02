@@ -59,7 +59,7 @@ public class BannerClientPage extends BasePage {
      * @param textContactName
      * @param textContactEmail
      */
-    public void fillDataToClientForm(String textClientName, String textContactName, String textContactEmail) {
+    public void enterClientForm(String textClientName, String textContactName, String textContactEmail) {
         waitForElement(Constants.TIMES_WAIT_ELEMENTS, nameInput());
         nameInput().sendKeys(textClientName);
         waitForElement(Constants.TIMES_WAIT_ELEMENTS, contactName());

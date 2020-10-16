@@ -44,7 +44,7 @@ public class BannerClientTest extends  BaseTest {
         String emailRandom = DataHelper.randomEmail();
 
         Log.info("[STEP-7] - Fill this data to contact form");
-        bannerClientPagePage.fillDataToClientForm(nameClientRandom, nameContactRandom, emailRandom);
+        bannerClientPagePage.enterClientForm(nameClientRandom, nameContactRandom, emailRandom);
 
         Log.info("[STEP-8] - Click save and close button");
         bannerClientPagePage.clickSaveAndCloseBtn();
@@ -67,7 +67,7 @@ public class BannerClientTest extends  BaseTest {
         String editEmail = DataHelper.randomEmail();
 
         Log.info("[STEP-14] - Fill this data to contact form");
-        bannerClientPagePage.fillDataToClientForm(editNameClient, editNameContact, editEmail);
+        bannerClientPagePage.enterClientForm(editNameClient, editNameContact, editEmail);
 
         Log.info("[STEP-15] - Click save and close button");
         bannerClientPagePage.clickSaveAndCloseBtn();
@@ -104,7 +104,7 @@ public class BannerClientTest extends  BaseTest {
         String emailRandom = DataHelper.randomEmail();
 
         Log.info("[STEP-7] - Fill this data to contact form");
-        bannerClientPagePage.fillDataToClientForm(nameClientRandom, nameContactRandom, emailRandom);
+        bannerClientPagePage.enterClientForm(nameClientRandom, nameContactRandom, emailRandom);
 
         Log.info("[STEP-8] - Select unpublished status");
         bannerClientPagePage.chooseStatus(Constants.STATUS_UNPUBLISHED);

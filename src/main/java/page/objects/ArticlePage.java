@@ -73,7 +73,7 @@ public class ArticlePage extends BasePage {
      * @param category
      * @param text
      */
-    public void fillDataArticleForm(String title, String status, String category, String text) {
+    public void enterArticleForm(String title, String status, String category, String text) {
         titleInput().sendKeys(title);
         clickToStatusSelect();
         clickOptionName(status);
@@ -86,8 +86,6 @@ public class ArticlePage extends BasePage {
      * Insert image
      */
     public void insertImage() {
-        Log.info(" + Click image button");
-        clickImageTab();
 
         Log.info(" + Choose image");
         BrowserHelper.switchToIframe(parentImageIframe());

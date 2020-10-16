@@ -18,7 +18,7 @@ public class BannerCategoryPage extends BasePage {
      * Fill name categories
      * @param nameTitle
      */
-    public void fillDataToCategoriesForm(String nameTitle) {
+    public void enterCategoriesForm(String nameTitle) {
 
         categoriesTile().sendKeys(nameTitle);
     }

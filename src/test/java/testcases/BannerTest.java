@@ -50,7 +50,7 @@ public class BannerTest extends BaseTest {
         String emailRandom = DataHelper.randomEmail();
 
         Log.info("[STEP-7] - Fill this data to contact form");
-        bannerClientPage.fillDataToClientForm(nameClientRandom, nameContactRandom, emailRandom);
+        bannerClientPage.enterClientForm(nameClientRandom, nameContactRandom, emailRandom);
 
         Log.info("[STEP-8] - Click save and close button");
         bannerPage.clickSaveAndCloseBtn();
@@ -72,7 +72,7 @@ public class BannerTest extends BaseTest {
 
         Log.info("[STEP-14] - Init data new categories and fill this to categories form");
         String categoriesRandom = DataHelper.randomText();
-        bannerCategoryPage.fillDataToCategoriesForm(categoriesRandom);
+        bannerCategoryPage.enterCategoriesForm(categoriesRandom);
 
         Log.info("[STEP-15] - Click save and close button");
         bannerPage.clickSaveAndCloseBtn();
@@ -96,7 +96,7 @@ public class BannerTest extends BaseTest {
         String nameBanner = DataHelper.randomText();
 
         Log.info("[STEP-22] - Fill data to banner form");
-        bannerPage.fillDataToBannerForm(nameBanner, categoriesRandom, nameClientRandom);
+        bannerPage.enterBannerForm(nameBanner, categoriesRandom, nameClientRandom);
 
         Log.info("[STEP-23] - Click save and close button");
         bannerPage.clickSaveAndCloseBtn();
@@ -145,7 +145,7 @@ public class BannerTest extends BaseTest {
         String emailRandom = DataHelper.randomEmail();
 
         Log.info("[STEP-7] - Fill this data to contact form");
-        bannerClientPage.fillDataToClientForm(nameClientRandom, nameContactRandom, emailRandom);
+        bannerClientPage.enterClientForm(nameClientRandom, nameContactRandom, emailRandom);
 
         Log.info("[STEP-8] - Click save and close button");
         bannerPage.clickSaveAndCloseBtn();
@@ -167,7 +167,7 @@ public class BannerTest extends BaseTest {
 
         Log.info("[STEP-14] - Init data new categories and fill this to categories form");
         String categoriesRandom = DataHelper.randomText();
-        bannerCategoryPage.fillDataToCategoriesForm(categoriesRandom);
+        bannerCategoryPage.enterCategoriesForm(categoriesRandom);
 
         Log.info("[STEP-15] - Click save and close button");
         bannerPage.clickSaveAndCloseBtn();
@@ -191,7 +191,7 @@ public class BannerTest extends BaseTest {
         String nameBanner = DataHelper.randomText();
 
         Log.info("[STEP-22] - Fill data to banner form");
-        bannerPage.fillDataToBannerForm(nameBanner, categoriesRandom, nameClientRandom);
+        bannerPage.enterBannerForm(nameBanner, categoriesRandom, nameClientRandom);
 
         Log.info("[STEP-23] - Click save and close button");
         bannerPage.clickSaveAndCloseBtn();

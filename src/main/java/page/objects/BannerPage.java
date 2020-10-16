@@ -20,7 +20,6 @@ public class BannerPage extends BasePage {
         return getWebDriver().findElement(_nameInput);
     }
 
-
     private WebElement categoriesSelect() {
         return getWebDriver().findElement(_categoriesSelect);
     }
@@ -70,7 +69,7 @@ public class BannerPage extends BasePage {
      * @param typeNameCategorie
      * @param nameClient
      */
-    public void fillDataToBannerForm(String nameBanner, String typeNameCategorie, String nameClient) {
+    public void enterBannerForm(String nameBanner, String typeNameCategorie, String nameClient) {
         nameInput().sendKeys(nameBanner);
         chooseTypeCategories(typeNameCategorie);
         clickBannerDetail();
