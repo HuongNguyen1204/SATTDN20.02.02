@@ -60,39 +60,47 @@ public class BannerClientPage extends BasePage {
      * @param textContactEmail
      */
     public void enterClientForm(String textClientName, String textContactName, String textContactEmail) {
-        waitForElement(Constants.TIMES_WAIT_ELEMENTS, nameInput());
+        waitForElement(nameInput(),Constants.TIMES_WAIT_ELEMENTS);
         nameInput().sendKeys(textClientName);
-        waitForElement(Constants.TIMES_WAIT_ELEMENTS, contactName());
+        waitForElement(contactName(),Constants.TIMES_WAIT_ELEMENTS);
         contactName().sendKeys(textContactName);
         contactEmail().sendKeys(textContactEmail);
     }
 
+    /***
+     * Choose status of contact form
+     * @param nameStatus
+     */
     public void chooseStatus(String nameStatus) {
         statusSelect().click();
         typeStatusSelect(nameStatus).click();
     }
 
+    /***
+     * Clear data of client form ( use for edit client form )
+     */
     public void clearDataClientForm() {
         nameInput().clear();
         contactName().clear();
         contactEmail().clear();
     }
 
-    public boolean compareQuantityItem(String quantity) {
-        return rowsTable().size() <= Integer.parseInt(quantity);
-    }
+    public int getSizeAllRows() { return rowsTable().size();}
 
     public void chooseStatusByName(String name) {
         waitToClick(statusBySearchTool(name));
     }
 
+    public void selectStatusSearchTool(String status){
+        stateSelectSearchTool().click();
+        chooseStatusByName(status);
+    }
     /***
      * View item by status
      * @param nameStatus
      */
-    public void viewBannerByStatus(String nameStatus) {
+    public void filterBannerByStatus(String nameStatus) {
         clickSearchToolBtn();
-        stateSelectSearchTool().click();
-        chooseStatusByName(nameStatus);
+        selectStatusSearchTool(nameStatus);
     }
 }

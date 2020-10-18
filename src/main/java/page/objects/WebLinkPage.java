@@ -31,7 +31,7 @@ public class WebLinkPage extends BasePage {
     }
 
     //Method
-    public void fillDataToWebLinkForm(String name, String url, String status) {
+    public void enterWebLinkForm(String name, String url, String status) {
         webLinkTitle().sendKeys(name);
         url().sendKeys(url);
         clickToStatusSelect();
@@ -50,7 +50,4 @@ public class WebLinkPage extends BasePage {
         return getText(firstTitle());
     }
 
-    public boolean compareTitle(String beforeTitle){
-        return beforeTitle.equalsIgnoreCase(getFirstTitle());
-    }
 }

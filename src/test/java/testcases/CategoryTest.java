@@ -19,8 +19,8 @@ public class CategoryTest extends BaseTest {
         categoryPage = new CategoryPage();
     }
 
-    @Test(testName = "TO_JOOMLA_CATEGORY_MANAGER_007",description = "User can browse Category help page")
-    public void TO_JOOMLA_CATEGORY_MANAGER_007(){
+    @Test(testName = "TO_JOOMLA_CATEGORY_MANAGER_007", description = "User can browse Category help page")
+    public void TO_JOOMLA_CATEGORY_MANAGER_007() {
         Log.startTestCase("TO_JOOMLA_CATEGORY_MANAGER_007 : User can browse Category help page");
 
         Log.info("[STEP-1] - Log in with account registered before");
@@ -36,11 +36,11 @@ public class CategoryTest extends BaseTest {
         categoryPage.clickHelpBtn();
 
         Log.info("[STEP-5] - Assert the help page is displays");
-        Assert.assertEquals(categoryPage.getTitleHelpBrowser(),Constants.TITLE_HELP_BROWSER,"The help page is not display");
+        Assert.assertTrue(categoryPage.isDisplayTitleHelpPage(Constants.TITLE_HELP_BROWSER, Constants.TIME_WAIT_FIRE_FOX), "The help page is not display");
     }
 
-    @Test(testName = "TO_JOOMLA_CATEGORY_MANAGER_014",description = "User can move may articles to another category")
-    public void TO_JOOMLA_CATEGORY_MANAGER_014(){
+    @Test(testName = "TO_JOOMLA_CATEGORY_MANAGER_014", description = "User can move may articles to another category")
+    public void TO_JOOMLA_CATEGORY_MANAGER_014() {
         Log.startTestCase("TO_JOOMLA_CATEGORY_MANAGER_014 : User can move may articles to another category");
 
         Log.info("[STEP-1] - Log in with account registered before");
@@ -58,7 +58,7 @@ public class CategoryTest extends BaseTest {
         Log.info("[STEP-5] - Ordering categories article");
         categoryPage.orderingCategory();
 
-        Log.info("[STEP-6] - Assert the sorted title and the final title");
-        Assert.assertFalse(categoryPage.compareTitleCategory(firstTitle),"The item is not ordering");
+        Log.info("[STEP-6] - Assert the first title before and after sort ");
+        Assert.assertNotEquals(firstTitle, categoryPage.getFirstTitle(), "The item is not ordering");
     }
 }

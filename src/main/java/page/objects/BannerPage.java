@@ -11,7 +11,7 @@ public class BannerPage extends BasePage {
     private By _nameInput = By.id("jform_name");
     private By _categoriesSelect = By.id("jform_catid_chzn");
     private By _clientSelect = By.id("jform_cid_chzn");
-    private By _bannerDetail = By.xpath("//ul[@id='myTabTabs']//a[.='Banner Details']");
+    private String _bannerTab = "//ul[@id='myTabTabs']//a[.='%s']";
     private String _itemTypeCategories = "//div[@id='jform_catid_chzn']//ul//li[.='%s']";
     private String _itemClient = "//div[@id='jform_cid_chzn']//ul//li[.='%s']";
 
@@ -24,8 +24,8 @@ public class BannerPage extends BasePage {
         return getWebDriver().findElement(_categoriesSelect);
     }
 
-    private WebElement bannerDetail() {
-        return getWebDriver().findElement(_bannerDetail);
+    private WebElement bannerTab(String tabName) {
+        return getWebDriver().findElement(By.xpath(String.format(_bannerTab, tabName)));
     }
 
     private WebElement clientSelect() {
@@ -41,8 +41,8 @@ public class BannerPage extends BasePage {
     }
 
     // Method
-    public void clickBannerDetail() {
-        bannerDetail().click();
+    public void clickToBannerTab(String nameTab) {
+        bannerTab(nameTab).click();
     }
 
     /***
@@ -67,13 +67,11 @@ public class BannerPage extends BasePage {
      * Fill name, type categories, clients to banner form
      * @param nameBanner
      * @param typeNameCategorie
-     * @param nameClient
      */
-    public void enterBannerForm(String nameBanner, String typeNameCategorie, String nameClient) {
+    public void enterBannerForm(String nameBanner, String typeNameCategorie) {
+        nameInput().clear();
         nameInput().sendKeys(nameBanner);
         chooseTypeCategories(typeNameCategorie);
-        clickBannerDetail();
-        chooseClient(nameClient);
     }
 
 }
