@@ -5,13 +5,13 @@ public class Constants {
     //Common
     public static final String BASE_URL = "http://13.82.211.128:8080/administrator/";
     public static final int TIMES_WAIT_ELEMENTS = 120;
-    public static final int TIME_WAITS_DRIVER = 15;
+    public static final int TIME_WAITS_DRIVER = 30;
     public static final int TIME_WAIT_FIRE_FOX = 500;
     public static final String STATUS_PUBLISHED = "Published";
     public static final String STATUS_UNPUBLISHED = "Unpublished";
     public static final String TRASHED_STATUS = "Trashed";
     public static final String ALL_QUANTITY= "All";
-    public static final String FIVE_ITEM = "5";
+    public static final int FIVE_ITEM = 5;
 
     //Menu header
     public static final String CONTENT_MENU = "Content";
@@ -27,8 +27,6 @@ public class Constants {
     public static final String VALID_PASSWORD = "huong123";
 
     // Article page
-    public static final String TITLE_ARTICLE = "Test Article 1";
-    public static final String CONTENT_AREA = " Sample Data-Articles";
     public static final String SAVED_SUCCESS_MESS = "Article saved.";
     public static final String CATEGORY_ARTICLE = "A Darkling Plain";
 
@@ -42,6 +40,8 @@ public class Constants {
     public static final String SAVE_CATEGORIES_SUCCESS = "Category saved.";
     public static final String SAVE_BANNER_SUCCESS = "Banner saved.";
     public static final String TRASH_SUCCESS = "1 banner trashed.";
+    public static final String BANNER_DETAIL_TABS = "Banner Details";
+    public static final String DETAIL_TABS = "Details";
 
     //Category
     public static final String TITLE_HELP_BROWSER = "Joomla! Help Screens";

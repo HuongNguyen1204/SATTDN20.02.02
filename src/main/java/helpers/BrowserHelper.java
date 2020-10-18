@@ -65,7 +65,7 @@ public class BrowserHelper {
         js.executeScript("arguments[0].scrollIntoView();", element);
     }
 
-    public static void waitForElement(int seconds, WebElement element) {
+    public static void waitForElement(WebElement element, int seconds) {
         WebDriverWait wait = new WebDriverWait(driver, seconds);
         wait.until(ExpectedConditions.visibilityOf(element));
     }
@@ -85,5 +85,10 @@ public class BrowserHelper {
 
     public static void switchToWindow(String handels) {
         driver.switchTo().window(handels);
+    }
+
+    public static boolean waitForTitle(String title, int seconds) {
+        WebDriverWait wait = new WebDriverWait(driver, seconds);
+        return wait.until(ExpectedConditions.titleIs(title));
     }
 }

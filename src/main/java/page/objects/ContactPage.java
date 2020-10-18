@@ -12,7 +12,6 @@ public class ContactPage extends BasePage {
     //Locator
     private By _contactTile = By.id("jform_name");
     private By _statusSelect = By.id("jform_published_chzn");
-    private By _categorySelect = By.id("jform_catid_chzn");
     private By _imageBtn = By.cssSelector(".field-media-wrapper button.btn.button-select");
     private By _parentImageIframe = By.cssSelector("div#imageModal_jform_image iframe");
     private By _insertBtn = By.cssSelector("button.button-save-selected");
@@ -26,10 +25,6 @@ public class ContactPage extends BasePage {
 
     private WebElement statusSelect() {
         return getWebDriver().findElement(_statusSelect);
-    }
-
-    private WebElement categorySelect() {
-        return getWebDriver().findElement(_categorySelect);
     }
 
     private WebElement imageBtn() {
@@ -53,12 +48,26 @@ public class ContactPage extends BasePage {
     }
 
     //Method
-    public void fillDataContactForm(String title, String status, String category) {
-        contactTile().sendKeys(title);
+
+    /***
+     * Choose status select input
+     * @param status
+     */
+    public void chooseStatus(String status) {
         statusSelect().click();
         clickOptionName(status);
-        categorySelect().click();
-        clickOptionName(category);
+    }
+
+    /***
+     * Fill data to contact form
+     * @param title
+     * @param status
+     * @param category
+     */
+    public void enterContactForm(String title, String status, String category) {
+        contactTile().sendKeys(title);
+        chooseStatus(status);
+        chooseCategory(category);
     }
 
     public void clickImageBtn() {
@@ -73,8 +82,6 @@ public class ContactPage extends BasePage {
      * Insert image to contact form
      */
     public void insertImage() {
-        Log.info(" + Click image button");
-        clickImageBtn();
 
         Log.info(" + Choose image");
         BrowserHelper.switchToIframe(parentImageIframe());

@@ -13,7 +13,6 @@ public class ArticlePage extends BasePage {
     private By _titleInput = By.id("jform_title");
     private By _articleTextArea = By.id("jform_articletext_ifr");
     private By _imageIcon = By.xpath("//div [@class='js-editor-tinymce'] //button[.='Image']");
-    private By _categorySelect = By.id("jform_catid_chzn");
     private By _firstTile = By.cssSelector("tbody tr:first-child a[data-original-title=Edit]");
     private By _imageItem = By.xpath("//div[normalize-space(.)='powered_by...']//preceding-sibling::div");
     private By _insertBtn = By.cssSelector("button.button-save-selected");
@@ -23,10 +22,6 @@ public class ArticlePage extends BasePage {
     // Element
     private WebElement titleInput() {
         return getWebDriver().findElement(_titleInput);
-    }
-
-    private WebElement categorySelect() {
-        return getWebDriver().findElement(_categorySelect);
     }
 
     private WebElement firstTile() {
@@ -75,10 +70,8 @@ public class ArticlePage extends BasePage {
      */
     public void enterArticleForm(String title, String status, String category, String text) {
         titleInput().sendKeys(title);
-        clickToStatusSelect();
-        clickOptionName(status);
-        categorySelect().click();
-        clickOptionName(category);
+        chooseStatus(status);
+        chooseCategory(category);
         articleTextArea().sendKeys(text);
     }
 

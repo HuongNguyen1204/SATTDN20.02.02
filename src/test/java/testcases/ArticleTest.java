@@ -1,5 +1,6 @@
 package testcases;
 
+import helpers.DataHelper;
 import page.objects.LoginPage;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
@@ -34,17 +35,21 @@ public class ArticleTest extends BaseTest {
         Log.info("[STEP-4] - Click new Article button");
         articlePage.clickNewBtn();
 
-        Log.info("[STEP-5] - Fill data to article form");
-        articlePage.enterArticleForm(Constants.TITLE_ARTICLE, Constants.STATUS_PUBLISHED, Constants.CATEGORY_ARTICLE, Constants.CONTENT_AREA);
+        Log.info("[STEP-5] - Init data random for article form");
+        String titleArticle = DataHelper.randomText();
+        String titleContent = DataHelper.randomText();
 
-        Log.info("[STEP-6] - Click save button");
+        Log.info("[STEP-6] - Fill this data to article form");
+        articlePage.enterArticleForm(titleArticle, Constants.STATUS_PUBLISHED, Constants.CATEGORY_ARTICLE, titleContent);
+
+        Log.info("[STEP-7] - Click save button");
         articlePage.clickSaveAndCloseBtn();
 
-        Log.info("[STEP-7] - Assert saved article success");
+        Log.info("[STEP-8] - Assert saved article success");
         Assert.assertEquals(articlePage.getSavedMessageSuccess(), Constants.SAVED_SUCCESS_MESS, "Save  sucess message does not matched");
 
-        Log.info("[STEP-8] - Check the Articles just posted displays");
-        Assert.assertEquals(articlePage.getFirstTitle(), Constants.TITLE_ARTICLE, "The client just posted not display");
+        Log.info("[STEP-9] - Check the Articles just posted displays");
+        Assert.assertEquals(articlePage.getFirstTitle(), titleArticle, "The client just posted not display");
     }
 
     @Test(testName = "TC_JOOMLA_ARTICLE_013", description = "TC_JOOMLA_ARTICLE_013")
@@ -63,22 +68,26 @@ public class ArticleTest extends BaseTest {
         Log.info("[STEP-4] - Click new Article button");
         articlePage.clickNewBtn();
 
-        Log.info("[STEP-5] - Fill data to article form");
-        articlePage.enterArticleForm(Constants.TITLE_ARTICLE, Constants.STATUS_PUBLISHED, Constants.CATEGORY_ARTICLE, Constants.CONTENT_AREA);
+        Log.info("[STEP-5] - Init data random for article form");
+        String titleArticle = DataHelper.randomText();
+        String titleContent = DataHelper.randomText();
 
-        Log.info("[STEP-6] - Click to image button ");
+        Log.info("[STEP-6] - Fill this data to article form");
+        articlePage.enterArticleForm(titleArticle, Constants.STATUS_PUBLISHED, Constants.CATEGORY_ARTICLE, titleContent);
+
+        Log.info("[STEP-7] - Click to image button ");
         articlePage.clickImageTab();
 
-        Log.info("[STEP-7] - Insert image");
+        Log.info("[STEP-8] - Insert image");
         articlePage.insertImage();
 
-        Log.info("[STEP-7] - Click save button");
+        Log.info("[STEP-9] - Click save button");
         articlePage.clickSaveAndCloseBtn();
 
-        Log.info("[STEP-8] - Assert saved article success");
+        Log.info("[STEP-10] - Assert saved article success");
         Assert.assertEquals(articlePage.getSavedMessageSuccess(), Constants.SAVED_SUCCESS_MESS, "Save  sucess message does not matched");
 
-        Log.info("[STEP-9] - Check the Articles just posted displays");
-        Assert.assertEquals(articlePage.getFirstTitle(), Constants.TITLE_ARTICLE, "The article just posted is not display");
+        Log.info("[STEP-11] - Check the Articles just posted displays");
+        Assert.assertEquals(articlePage.getFirstTitle(), titleArticle, "The article just posted is not display");
     }
 }

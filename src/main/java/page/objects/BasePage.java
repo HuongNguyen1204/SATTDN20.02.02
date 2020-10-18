@@ -2,8 +2,10 @@ package page.objects;
 
 import helpers.BrowserHelper;
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 import utilities.Constants;
+import utilities.Log;
 
 import static helpers.BrowserHelper.getWebDriver;
 import static helpers.BrowserHelper.waitForElement;
@@ -21,7 +23,8 @@ public class BasePage {
     private By _listLimit = By.id("list_limit_chzn");
     private By _editBtn = By.cssSelector("#toolbar-edit button");
     private By _statusSelect = By.id("jform_state_chzn");
-    private By _anyLocatorHelpage = By.cssSelector("body h1");
+    private By _categorySelect = By.id("jform_catid_chzn");
+    private By _saveBtn = By.xpath("//div[@id='toolbar']// button[normalize-space(.)='Save']");
     private String _itemSubMenu = "//ul[@id='submenu']//li//a[contains(text(),'%s')]";
     private String _menuItem = "//ul[@id='menu']//li//a[normalize-space(.)='%s']";
     private String _nameOption = "//div[@class='controls']//a[.='%s']";
@@ -99,13 +102,17 @@ public class BasePage {
         return getWebDriver().findElement(_statusSelect);
     }
 
-    private WebElement anyLocatorHelpage() {
-        return getWebDriver().findElement(_anyLocatorHelpage);
+    private WebElement categorySelect() {
+        return getWebDriver().findElement(_categorySelect);
+    }
+
+    private WebElement saveBtn() {
+        return getWebDriver().findElement(_saveBtn);
     }
 
     //Method
     public void clickMenuItem(String menuItemName) {
-        waitForElement(Constants.TIMES_WAIT_ELEMENTS, menuItem(menuItemName));
+        waitForElement(menuItem(menuItemName), Constants.TIMES_WAIT_ELEMENTS);
         scrollToClick(menuItem(menuItemName));
     }
 
@@ -143,6 +150,10 @@ public class BasePage {
 
     public void clickToStatusSelect() {
         statusSelect().click();
+    }
+
+    public void clickToSaveBtn() {
+        saveBtn().click();
     }
 
     /***
@@ -195,8 +206,13 @@ public class BasePage {
      * @param titlePosted
      * @return
      */
-    public boolean doesShowTitle(String titlePosted) {
-        return titlePosted(titlePosted).isDisplayed();
+    public boolean isDisplayTitle(String titlePosted) throws NoSuchElementException {
+        try {
+            return titlePosted(titlePosted).isDisplayed();
+        } catch (NoSuchElementException e) {
+            Log.info("The item just posted not displays" + e);
+            return false;
+        }
     }
 
     /***
@@ -209,10 +225,10 @@ public class BasePage {
     }
 
     /***
-     * Change quantity item by number
+     * paging by quantity
      * @param quantity
      */
-    public void viewItemByQuantity(String quantity) {
+    public void paging(String quantity) {
         listLimitItem().click();
         quantityItem(quantity).click();
     }
@@ -222,7 +238,7 @@ public class BasePage {
     }
 
     public void waitToClick(WebElement element) {
-        BrowserHelper.waitForElement(Constants.TIMES_WAIT_ELEMENTS, element);
+        BrowserHelper.waitForElement(element, Constants.TIMES_WAIT_ELEMENTS);
         element.click();
     }
 
@@ -234,10 +250,19 @@ public class BasePage {
         waitToClick(subMenuItem(name));
     }
 
-    public String getTitleHelpBrowser() {
+    public boolean isDisplayTitleHelpPage(String title, int seconds) {
         for (String windowHandle : getWebDriver().getWindowHandles())
             BrowserHelper.switchToWindow(windowHandle);
-        waitForElement(Constants.TIME_WAIT_FIRE_FOX, anyLocatorHelpage());
-        return getWebDriver().getTitle();
+        return BrowserHelper.waitForTitle(title, seconds);
+    }
+
+    public void chooseStatus(String nameStatus) {
+        clickToStatusSelect();
+        clickOptionName(nameStatus);
+    }
+
+    public void chooseCategory(String nameCategory) {
+        categorySelect().click();
+        clickOptionName(nameCategory);
     }
 }

@@ -21,6 +21,7 @@ public class CategoryPage extends BasePage {
     }
 
     //Method
+
     /***
      * Click first categories article and click to order icon
      */
@@ -31,9 +32,5 @@ public class CategoryPage extends BasePage {
 
     public String getFirstTitle() {
         return getText(firstTitle());
-    }
-
-    public boolean compareTitleCategory(String beforeTitle) {
-        return beforeTitle.equalsIgnoreCase(getFirstTitle());
     }
 }

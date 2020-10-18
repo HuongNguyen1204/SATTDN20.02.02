@@ -40,28 +40,28 @@ public class WebLinkTest extends BaseTest {
         String url = DataHelper.randomUrl();
 
         Log.info("[STEP-6] -Fill this data to weblink form");
-        webLinkPage.fillDataToWebLinkForm(nameWebLinkRandom,url, Constants.STATUS_PUBLISHED);
+        webLinkPage.enterWebLinkForm(nameWebLinkRandom, url, Constants.STATUS_PUBLISHED);
 
         Log.info("[STEP-7] - Click save button");
         webLinkPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-8] - Assert weblink saved success");
-        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS,"Save  sucess message does not matched");
+        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS, "Save  sucess message does not matched");
 
         Log.info("[STEP-9] - Click to show all weblink ");
-        webLinkPage.viewItemByQuantity(Constants.ALL_QUANTITY);
+        webLinkPage.paging(Constants.ALL_QUANTITY);
 
         Log.info("[STEP-10] - Move the weblink just posted to trash");
         webLinkPage.deleteItem(nameWebLinkRandom);
 
         Log.info("[STEP-11] - Assert message trash weblink success");
-        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.TRAHS_SUCCESS_WEBLINK,"Trash sucess message does not matched");
+        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.TRAHS_SUCCESS_WEBLINK, "Trash sucess message does not matched");
 
         Log.info("[STEP-12] - View item just trashed");
         webLinkPage.viewItemByStatus(Constants.TRASHED_STATUS);
 
         Log.info("[STEP-13] - Check item just trashed is displays");
-        Assert.assertTrue(webLinkPage.doesShowTitle(nameWebLinkRandom),"item just trashed is not displays");
+        Assert.assertTrue(webLinkPage.isDisplayTitle(nameWebLinkRandom), "item just trashed is not displays");
     }
 
     @Test(testName = "TC_JOOMLA_WEBLINKS_014", description = "Verify user can change the order of weblinks using the Ordering column")
@@ -85,13 +85,13 @@ public class WebLinkTest extends BaseTest {
         String url1 = DataHelper.randomUrl();
 
         Log.info("[STEP-6] -Fill this data to weblink form");
-        webLinkPage.fillDataToWebLinkForm(nameWebLinkRandom1,url1, Constants.STATUS_PUBLISHED);
+        webLinkPage.enterWebLinkForm(nameWebLinkRandom1, url1, Constants.STATUS_PUBLISHED);
 
         Log.info("[STEP-7] - Click save button");
         webLinkPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-8] - Assert weblink saved success");
-        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS,"Save  sucess message does not matched");
+        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS, "Save  sucess message does not matched");
 
         Log.info("[STEP-9] - Click content on menu nav bar)");
         webLinkPage.clickMenuItem(Constants.COMPONENTS_MENU);
@@ -107,22 +107,22 @@ public class WebLinkTest extends BaseTest {
         String url2 = DataHelper.randomUrl();
 
         Log.info("[STEP-13] -Fill this data to weblink form");
-        webLinkPage.fillDataToWebLinkForm(nameWebLinkRandom2,url2, Constants.STATUS_PUBLISHED);
+        webLinkPage.enterWebLinkForm(nameWebLinkRandom2, url2, Constants.STATUS_PUBLISHED);
 
         Log.info("[STEP-14] - Click save button");
         webLinkPage.clickSaveAndCloseBtn();
 
         Log.info("[STEP-15] - Assert weblink saved success");
-        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS,"Save  sucess message does not matched");
+        Assert.assertEquals(webLinkPage.getSavedMessageSuccess(), Constants.SAVE_WEBLINK_SUCCESS, "Save  sucess message does not matched");
 
-        webLinkPage.viewItemByQuantity(Constants.ALL_QUANTITY);
+        webLinkPage.paging(Constants.ALL_QUANTITY);
         Log.info("[STEP-16] - Get first title of categories");
         String firstTitle = webLinkPage.getFirstTitle();
 
         Log.info("[STEP-17] - Choose first weblink and click order button");
         webLinkPage.orderingWebLink();
 
-        Log.info("[STEP-18] - Assert the sorted weblink ");
-        Assert.assertFalse(webLinkPage.compareTitle(firstTitle),"The item is not ordering");
+        Log.info("[STEP-18] - Assert the first title before and after sorting ");
+        Assert.assertNotEquals(firstTitle, webLinkPage.getFirstTitle(), "The item is not ordering");
     }
 }

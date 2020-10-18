@@ -13,7 +13,7 @@ public class DataHelper {
     }
 
     public static String randomText() {
-        return faker.name().title();
+        return faker.letterify("??????");
     }
 
     public static String randomUrl() { return faker.internet().url(); }
